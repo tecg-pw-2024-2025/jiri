@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JiriCreateRequest;
 use App\Models\Jiri;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class JiriController extends Controller
@@ -30,19 +32,18 @@ class JiriController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+    public function store(JiriCreateRequest $request): RedirectResponse
     {
         $jiri = Jiri::create($request->except('_token'));
 
-        return redirect()->route('jiris.show', $jiri->id);
+        return to_route('jiris.show', $jiri);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Jiri $jiri)
     {
-        $jiri = Jiri::findOrFail($id);
-
         return view('jiris.show', compact('jiri'));
     }
 
