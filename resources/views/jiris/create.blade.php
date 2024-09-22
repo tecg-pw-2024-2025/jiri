@@ -6,10 +6,14 @@
         @csrf
         <div class="flex flex-col gap-2">
             <label for="name"
-                   class="font-bold">Name<span class="block font-normal">min 3 chars, max 255</span></label>
+                   class="font-bold">Name<span class="block font-normal">min 3 chars, max 255</span>
+            @error('name')
+            <span class="block text-red-500">{{ $message }}</span>
+            @enderror
+            </label>
             <input id="name"
                    type="text"
-                   value=""
+                   value="{{ old('name') }}"
                    name="name"
                    placeholder="Jiri name"
                    autocapitalize="none"
@@ -20,10 +24,14 @@
         @php($now = now()->format('Y-m-d H:i'))
         <div class="flex flex-col gap-2">
             <label for="starting_at"
-                   class="font-bold">Starting at<span class="block font-normal">formated like {{ $now }}</span></label>
+                   class="font-bold">Starting at<span class="block font-normal">formated like {{ $now }}</span>
+                @error('starting_at')
+                <span class="block text-red-500">{{ $message }}</span>
+                @enderror
+            </label>
             <input id="starting_at"
                    type="text"
-                   value=""
+                   value="{{ old('starting_at') }}"
                    name="starting_at"
                    placeholder="{{ $now }}"
                    autocapitalize="none"
