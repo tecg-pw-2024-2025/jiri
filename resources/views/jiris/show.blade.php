@@ -14,4 +14,15 @@
             </dd>
         </div>
     </dl>
+    <div>
+        <a href="{{ route('jiris.edit',$jiri) }}"
+           class="underline text-blue-500 inline-block first-letter:capitalize">{!! __('update this jiri') !!}</a>
+    </div>
+    <form action="{{ route('jiris.destroy',$jiri) }}"
+          method="post">
+        @csrf
+        @method('DELETE')
+        <x-form-submission-button class="bg-red-500">
+            {!! __('delete this jiri') !!}
+        </x-form-submission-button>
 </x-layouts.main>
