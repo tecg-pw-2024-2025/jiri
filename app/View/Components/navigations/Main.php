@@ -20,6 +20,8 @@ class Main extends Component
         $this->title = 'main navigation';
         $this->links = [
             ['url' => route('jiris.index'), 'title' => 'jiris'],
+            ['url' => route('contacts.index'), 'title' => 'contacts'],
+            ['url' => route('projects.index'), 'title' => 'projects'],
         ];
     }
 
