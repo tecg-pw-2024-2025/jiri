@@ -1,0 +1,22 @@
+{
+    "jiris": "jiris",
+    "contacts": "contacts",
+    "projects": "projets",
+    "go to main menu": "aller au menu principal",
+    "on": "le",
+    "at": "à",
+    "jiri name": "nom du jiri",
+    "date and time of the jiri": "date et heure du jiri",
+    "min 3 chars, max 255": "min 3 caractères, max 255",
+    "my jiris": "mes jiris",
+    "upcoming jiris": "jiris à venir",
+    "past jiris": "jiris passés",
+    "name of the jiri": "nom du jiri",
+    "starting at": "commençant à",
+    "name": "nom",
+    "create a new jiri": "créer un nouveau jiri",
+    "formated like": "formaté comme",
+    "create this jiri": "créer ce jiri",
+    "delete this jiri": "supprimer ce jiri",
+    "update this jiri": "mettre à jour ce jiri"
+}
