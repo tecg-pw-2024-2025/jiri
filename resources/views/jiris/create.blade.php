@@ -1,6 +1,7 @@
 <x-layouts.main>
     <h1 class="font-bold text-2xl">Create a new Jiri</h1>
     <form action="/jiris"
+    <form action="{{ route('jiris.store') }}"
           method="post"
           class="flex flex-col gap-8 bg-slate-50 p-4">
         @csrf
