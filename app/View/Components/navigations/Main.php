@@ -15,12 +15,11 @@ class Main extends Component
      */
     public function __construct(
         public array $links = [],
-        public string $title = 'Main Navigation'
+        public string $title = ''
     ) {
+        $this->title = 'main navigation';
         $this->links = [
-            ['url' => '/jiris', 'title' => 'Jiris'],
-            ['url' => '/contacts', 'title' => 'Contacts'],
-            ['url' => '/projects', 'title' => 'Projects'],
+            ['url' => route('jiris.index'), 'title' => 'jiris'],
         ];
     }
 

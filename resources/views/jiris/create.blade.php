@@ -1,22 +1,22 @@
 <x-layouts.main>
-    <h1 class="font-bold text-2xl">Create a new Jiri</h1>
-    <form action="/jiris"
+    <h1 class="font-bold text-2xl first-letter:capitalize">{!! __('create a new jiri') !!}</h1>
     <form action="{{ route('jiris.store') }}"
           method="post"
           class="flex flex-col gap-8 bg-slate-50 p-4">
         @csrf
         <div class="flex flex-col gap-2">
             <label for="name"
-                   class="font-bold">Name<span class="block font-normal">min 3 chars, max 255</span>
-            @error('name')
-            <span class="block text-red-500">{{ $message }}</span>
-            @enderror
+                   class="font-bold first-letter:capitalize">{!! __('name') !!}
+                <span class="block font-normal">{!! __('min 3 chars, max 255') !!}</span>
+                @error('name')
+                <span class="block text-red-500">{!! $message !!}</span>
+                @enderror
             </label>
             <input id="name"
                    type="text"
                    value="{{ old('name') }}"
                    name="name"
-                   placeholder="Jiri name"
+                   placeholder="{!! __('jiri name') !!}"
                    autocapitalize="none"
                    autocorrect="off"
                    spellcheck="false"
@@ -25,9 +25,10 @@
         @php($now = now()->format('Y-m-d H:i'))
         <div class="flex flex-col gap-2">
             <label for="starting_at"
-                   class="font-bold">Starting at<span class="block font-normal">formated like {{ $now }}</span>
+                   class="font-bold first-letter:capitalize">{!! __('starting at') !!}
+                <span class="block font-normal">{!! __('formated like')  !!} {{ $now }}</span>
                 @error('starting_at')
-                <span class="block text-red-500">{{ $message }}</span>
+                <span class="block text-red-500">{!! $message !!}</span>
                 @enderror
             </label>
             <input id="starting_at"
@@ -40,6 +41,6 @@
                    spellcheck="false"
                    class="border border-grey-700 focus:invalid:border-pink-500 invalid:text-pink-600 rounded-md p-2">
         </div>
-        <x-form-sumission-button>Create this Jiri</x-form-sumission-button>
+        <x-form-submission-button class="bg-blue-500">{!! __('create this jiri') !!}</x-form-submission-button>
     </form>
 </x-layouts.main>

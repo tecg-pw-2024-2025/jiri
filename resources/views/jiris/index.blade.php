@@ -1,17 +1,16 @@
 <x-layouts.main>
-    <h1 class="text-3xl font-bold">My Jiris</h1>
+    <h1 class="text-3xl font-bold first-letter:capitalize">{!! __('my jiris') !!}</h1>
     @if($pastJiris)
-        <h2 class="font-bold">Past Jiris</h2>
+        <h2 class="font-bold first-letter:capitalize">{!! __('past jiris') !!}</h2>
         <x-jiris.list :jiris="$pastJiris" />
     @endif
 
     @if($upcomingJiris)
-        <h2 class="font-bold">Upcoming Jiris</h2>
+        <h2 class="font-bold first-letter:capitalize">{!! __('upcoming jiris') !!}</h2>
         <x-jiris.list :jiris="$upcomingJiris" />
     @endif
 
     <div>
-        <a href="/jiris/create"
         <a href="{{ route('jiris.create') }}"
            class="underline text-blue-500 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +22,6 @@
                       clip-rule="evenodd" />
                 <path d="M14.25 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 16.5 7.5h-1.875a.375.375 0 0 1-.375-.375V5.25Z" />
             </svg>
-            <span>Create a new Jiri</span></a>
+            <span class="first-letter:capitalize">{{ __('create a new jiri') }}</span></a>
     </div>
 </x-layouts.main>
