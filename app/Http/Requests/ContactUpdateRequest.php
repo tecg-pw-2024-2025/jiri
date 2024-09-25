@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ContactStoreRequest extends FormRequest
+class ContactUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +22,16 @@ class ContactStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $contact = $this->route('contact');
+
         return [
+            'email' => [
+                'required',
+                'email', // You might want to ensure it's a valid email address
+                Rule::unique('contacts')->ignore($contact), // Ignore current contact's ID in unique rule
+            ],
             'first_name' => 'required|string|between:3,255',
             'last_name' => 'required|string|between:3,255',
-            'email' => 'required|email|unique:contacts,email',
         ];
     }
 }

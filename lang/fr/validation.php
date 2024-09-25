@@ -154,7 +154,7 @@ return [
     'starts_with' => 'Le champ :attribute doit commencer par l’un des suivants : :values.',
     'string' => 'Le champ :attribute doit être une chaîne de caractères.',
     'timezone' => 'Le champ :attribute doit être un fuseau horaire valide.',
-    'unique' => 'Le :attribute a déjà été pris.',
+    'unique' => 'Le champ «&nbsp;:attribute&nbsp;» a déjà été pris.',
     'uploaded' => 'Le champ :attribute a échoué à télécharger.',
     'uppercase' => 'Le champ :attribute doit être en majuscules.',
     'url' => 'Le champ :attribute doit être une URL valide.',
