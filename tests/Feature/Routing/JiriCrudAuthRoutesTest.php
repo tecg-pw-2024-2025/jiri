@@ -7,13 +7,21 @@ use function Pest\Laravel\{assertDatabaseHas, assertDatabaseMissing, delete, get
 
 beforeEach(function () {
     $this->user = User::factory()->create();
+    $this->otherUser = User::factory()->create();
     $this->actingAs($this->user);
 });
 
 // The GET routes
 // Index
-it('has a route to display jiris to auth users', function () {
-    get(route('jiris.index'))->assertStatus(200);
+it('has a route to display their jiris to auth users', function () {
+    $this->user->jiris()->save(Jiri::factory()->make());
+    $this->otherUser->jiris()->save(Jiri::factory()->make());
+
+    get(route('jiris.index'))
+        ->assertStatus(200)
+        ->assertSee($this->user->jiris->first()->name)
+        ->assertDontSee($this->otherUser->jiris->first()->name);
+
 });
 
 // Show

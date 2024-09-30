@@ -50,4 +50,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Jiri::class);
     }
+
+    public function pastJiris(): HasMany
+    {
+        return $this
+            ->hasMany(Jiri::class)
+            ->where('starting_at', '<', now())
+            ->orderBy('starting_at', 'desc');
+    }
+
+    public function upcomingJiris(): HasMany
+    {
+        return $this
+            ->hasMany(Jiri::class)
+            ->where('starting_at', '>=', now())
+            ->orderBy('starting_at');
+    }
 }
