@@ -14,3 +14,12 @@ test('a user can have no jiris', function () {
 
     expect($user->jiris)->toBeEmpty();
 });
+
+test('a user cannot retrieve the jiris of another user', function () {
+    User::factory()->hasJiris(3)->create();
+    $anotherUser = User::factory()->create();
+
+    expect($anotherUser->jiris)->toBeEmpty()
+        ->and($anotherUser->pastJiris)->toBeEmpty()
+        ->and($anotherUser->upcomingJiris)->toBeEmpty();
+});
