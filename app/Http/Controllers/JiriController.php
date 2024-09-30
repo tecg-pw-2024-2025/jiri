@@ -33,7 +33,9 @@ class JiriController extends Controller
      */
     public function store(JiriStoreRequest $request): RedirectResponse
     {
-        $jiri = Jiri::create($request->validated());
+        $validated = $request->validated();
+
+        $jiri = Auth::user()?->jiris()->create($validated);
 
         return to_route('jiris.show', $jiri);
     }

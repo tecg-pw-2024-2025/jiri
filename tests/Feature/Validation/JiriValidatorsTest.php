@@ -1,10 +1,16 @@
 <?php
+
+use App\Models\User;
+
 use function Pest\Laravel\post;
 
-it('validates the required fields on a jiri creation', function () {
-    $response = post(route('jiris.store'), []);
+beforeEach(function () {
+    $this->user = User::factory()->create();
+    $this->actingAs($this->user);
+});
 
-    $response->assertSessionHasErrors(['name', 'starting_at']);
+it('validates the required fields on a jiri creation', function () {
+        post(route('jiris.store'), [])->assertSessionHasErrors(['name', 'starting_at']);
 });
 
 it('validates the starting_at field as a date on a jiri creation', function () {

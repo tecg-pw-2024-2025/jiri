@@ -19,6 +19,7 @@ class Jiri extends Model
     protected $fillable = [
         'name',
         'starting_at',
+        'user_id'
     ];
 
     public function user(): BelongsTo
