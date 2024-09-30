@@ -2,12 +2,7 @@
 
 use App\Models\Jiri;
 
-use function Pest\Laravel\get;
-use function Pest\Laravel\post;
-use function Pest\Laravel\patch;
-use function Pest\Laravel\delete;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\assertDatabaseMissing;
+use function Pest\Laravel\{assertDatabaseHas, assertDatabaseMissing, delete, get, patch, post};
 
 // The GET routes
 it('has a route to display jiris', function () {
