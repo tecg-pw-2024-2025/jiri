@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <h1 class="text-3xl font-bold">{{ $contact->name }}</h1>
     <dl class="flex flex-col gap-4 bg-slate-50 p-4">
         <div>
@@ -22,4 +22,4 @@
             {!! __('delete this contact') !!}
         </x-form-submission-button>
     </form>
-</x-layouts.main>
+</x-app-layout>

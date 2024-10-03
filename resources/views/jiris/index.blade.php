@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <h1 class="text-3xl font-bold first-letter:capitalize">{!! __('my jiris') !!}</h1>
     @if($pastJiris)
         <h2 class="font-bold first-letter:capitalize">{!! __('past jiris') !!}</h2>
@@ -24,4 +24,4 @@
             </svg>
             <span class="first-letter:capitalize">{{ __('create a new jiri') }}</span></a>
     </div>
-</x-layouts.main>
+</x-app-layout>

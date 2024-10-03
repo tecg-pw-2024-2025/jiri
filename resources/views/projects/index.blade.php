@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <h1 class="text-3xl font-bold first-letter:capitalize">{!! __('my projects') !!}</h1>
     @if($projects)
         <x-projects.list :projects="$projects" />
@@ -18,4 +18,4 @@
             </svg>
             <span class="first-letter:capitalize">{{ __('create a new project') }}</span></a>
     </div>
-</x-layouts.main>
+</x-app-layout>

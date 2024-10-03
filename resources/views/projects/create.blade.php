@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <h1 class="font-bold text-2xl first-letter:capitalize">{!! __('create a new project') !!}</h1>
     <form action="{{ route('projects.store') }}"
           method="post"
@@ -40,4 +40,4 @@
         </div>
         <x-form-submission-button class="bg-blue-500">{!! __('create this project') !!}</x-form-submission-button>
     </form>
-</x-layouts.main>
+</x-app-layout>

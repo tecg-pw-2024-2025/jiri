@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-app-layout>
     <h1 class="text-3xl font-bold first-letter:capitalize">{!! __('my contacts') !!}</h1>
     @if($contacts)
         <x-contacts.list :contacts="$contacts" />
@@ -20,4 +20,4 @@
             </svg>
             <span class="first-letter:capitalize">{{ __('create a new contact') }}</span></a>
     </div>
-</x-layouts.main>
+</x-app-layout>
