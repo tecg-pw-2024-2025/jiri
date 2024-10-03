@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\ContactRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Jiri extends Model
 {
@@ -25,5 +27,28 @@ class Jiri extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function contacts(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Contact::class, Attendance::class)
+            ->withTimestamps();
+    }
+
+    public function students(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Contact::class, Attendance::class)
+            ->withPivotValue('role', ContactRoles::Student->value)
+            ->withTimestamps();
+    }
+
+    public function evaluators(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Contact::class, Attendance::class)
+            ->withPivotValue('role', ContactRoles::Evaluator->value)
+            ->withTimestamps();
     }
 }

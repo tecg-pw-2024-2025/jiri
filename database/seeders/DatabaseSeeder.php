@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Contact;
-use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,14 +14,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)
-            ->hasJiris(20)
-            ->create();
+        User::factory(5)
+            ->hasJiris(5)
+            ->hasContacts(10)
+            ->hasProjects(5)
+            ->create()
+            ->each(function ($user) {
+                $user->jiris->each(function ($jiri) use ($user) {
+                    $jiri->students()->attach(
+                        $user->contacts->random(10)
+                    );
+                });
+            });
         User::factory()
-            ->hasJiris(20)
-            ->create(['email' => 'dominique.vilain@hepl.be']);
-
-        Contact::factory(10)->create();
-        Project::factory(10)->create();
+            ->hasJiris(5)
+            ->hasContacts(10)
+            ->hasProjects(5)
+            ->create(['email' => 'dominique.vilain@hepl.be'])
+            ->each(function ($user) {
+                $user->jiris->each(function ($jiri) use ($user) {
+                    $jiri->evaluators()->attach(
+                        $user->contacts->random(10)
+                    );
+                });
+            });
     }
 }

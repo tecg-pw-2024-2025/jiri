@@ -66,4 +66,14 @@ class User extends Authenticatable
             ->where('starting_at', '>=', now())
             ->orderBy('starting_at');
     }
+
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Contact::class);
+    }
 }
