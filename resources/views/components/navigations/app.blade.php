@@ -1,11 +1,9 @@
 <x-navigations.layout>
-    <ul class="flex flex-row gap-4 items-center">
-        <li><a class="underline text-white uppercase tracking-wider"
-               href="{{ route('jiris.index') }}">{!! __('jiris') !!}</a></li>
-        <li><a class="underline text-white uppercase tracking-wider"
-               href="{{ route('contacts.index') }}">{!! __('contacts') !!}</a></li>
-        <li><a class="underline text-white uppercase tracking-wider"
-                href="{{ route('projects.index') }}">{!! __('projects') !!}</a></li>
+    <x-application-logo class="w-10 h-10" />
+    <x-slot:items>
+        <x-navigations.main-navigation-item route="jiris.index" text="jiris" />
+        <x-navigations.main-navigation-item route="contacts.index" text="contacts" />
+        <x-navigations.main-navigation-item route="projects.index" text="projects" />
         <li class="ml-auto">
             <form action="{{ route('logout') }}"
                   method="post">
@@ -13,6 +11,5 @@
                 <x-form-submission-button class="bg-red-500">{!! __('logout') !!}</x-form-submission-button>
             </form>
         </li>
-
-    </ul>
+    </x-slot:items>
 </x-navigations.layout>
