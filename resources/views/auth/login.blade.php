@@ -14,38 +14,9 @@
               method="post"
               class="flex flex-col gap-8">
             @csrf
-            <div class="flex flex-col gap-2">
-                <label for="email"
-                       class="font-bold first-letter:capitalize">{!! __('email address') !!}
-                    @error('email')
-                    <span class="text-red-500 block">{!!  $message  !!}</span>
-                    @enderror
-                </label>
-                <input id="email"
-                       type="email"
-                       value="{!! old('email') !!}"
-                       name="email"
-                       placeholder="{!! __('jon@doe.com') !!}"
-                       autocapitalize="none"
-                       autocorrect="off"
-                       spellcheck="false"
-                       class="border border-gray-300 focus:invalid:border-red-500 invalid:text-red-600 rounded-md p-2 placeholder-gray-300">
+            <x-input-with-label id="email" name="email" type="email" label-text="email address" value="{{ old('email') }}" placeholder="jon@doe.com" />
+            <x-input-with-label id="password" name="password" type="password" label-text="password" value="" placeholder="" />
 
-            </div>
-            <div class="flex flex-col gap-2">
-                <label for="password"
-                       class="font-bold first-letter:capitalize">{!! __('password') !!}
-                    @error('password')
-                    <span class="text-red-500 block">{!!  $message  !!}</span>
-                    @enderror
-                </label>
-                <input id="password"
-                       type="password"
-                       value=""
-                       name="password"
-                       spellcheck="false"
-                       class="border border-gray-300 focus:invalid:border-red-500 invalid:text-red-600 rounded-md p-2">
-            </div>
             <div class="flex gap-2 items-center">
                 <input id="remember"
                        type="checkbox"
