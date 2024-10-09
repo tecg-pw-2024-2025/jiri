@@ -29,6 +29,9 @@
                 <legend class="mb-2">
                     <span class=" font-bold uppercase tracking-wider">{!! __('participants') !!}</span>
                     <span class="block">{!! __('sorted by family name') !!}</span>
+                    @if($errors->has('evaluators') || $errors->has('students'))
+                        <span class="text-red-500 block">{!! $errors->first('students') ?: $errors->first('evaluators') !!}</span>
+                    @endif
                 </legend>
                 <div class="flex gap-8">
                     <section>

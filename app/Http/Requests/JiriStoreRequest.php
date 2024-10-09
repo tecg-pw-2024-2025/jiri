@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Rules\ContactFromUser;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class JiriStoreRequest extends FormRequest
 {

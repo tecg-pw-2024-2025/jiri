@@ -16,7 +16,7 @@ class ContactFromUser implements ValidationRule
             ->toArray();
 
         if (count(array_diff($value, $contacts)) !== 0) {
-            $fail('The selected contacts are invalid.');
+            $fail('You have selected contacts from another user.');
         }
     }
 }
