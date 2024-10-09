@@ -16,8 +16,19 @@
               method="post"
               class="flex flex-col gap-6">
             @csrf
-            <x-input-with-label id="email" name="email" type="email" label-text="email address" value="{{ old('email') }}" placeholder="jon@doe.com" />
-            <x-input-with-label id="password" name="password" type="password" label-text="password" value="" placeholder="" help-text="at least 8 characters, letters, digits, and special chars (+-*/%!?_)" />
+            <x-input-with-label id="email"
+                                name="email"
+                                type="email"
+                                label-text="email address"
+                                value="{{ old('email') }}"
+                                placeholder="jon@doe.com"
+            />
+            <x-input-with-label id="password"
+                                name="password"
+                                type="password"
+                                label-text="password"
+                                help-text="at least 8 characters, letters, digits, and special chars (+-*/%!?_)"
+            />
             <div>
                 <x-form-submission-button class="bg-blue-500">{!! __('register') !!}</x-form-submission-button>
             </div>

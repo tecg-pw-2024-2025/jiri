@@ -14,23 +14,25 @@
               method="post"
               class="flex flex-col gap-8">
             @csrf
-            <x-input-with-label id="email" name="email" type="email" label-text="email address" value="{{ old('email') }}" placeholder="jon@doe.com" />
-            <x-input-with-label id="password" name="password" type="password" label-text="password" value="" placeholder="" />
-
-            <div class="flex gap-2 items-center">
-                <input id="remember"
-                       type="checkbox"
-                       value=""
-                       name="remember"
-                       class="border border-grey-300 rounded-md p-2">
-                <label for="remember"
-                       class="font-medium first-letter:capitalize">{!! __('remember me for 15 days') !!}</label>
-            </div>
+            <x-input-with-label id="email"
+                                name="email"
+                                type="email"
+                                label-text="email address"
+                                value="{{ old('email') }}"
+                                placeholder="jon@doe.com"
+            />
+            <x-input-with-label id="password"
+                                name="password"
+                                type="password"
+                                label-text="password"
+            />
+            <x-input-with-label id="remember"
+                                name="remember"
+                                type="checkbox"
+                                label-text="remember me for 15 days"
+            />
             <div>
-                <button type="submit"
-                        class="bg-blue-500 font-bold text-white rounded-md p-2 px-4 tracking-wider uppercase">
-                    S’identifier
-                </button>
+                <x-form-submission-button class="bg-blue-500">{!! __('login') !!}</x-form-submission-button>
             </div>
         </form>
         <a href="{!! route('register') !!}"
