@@ -25,7 +25,7 @@
     "starting at": "à partir de",
     "name": "nom",
     "create a new jiri": "créer un nouveau jiri",
-    "formated like": "formaté comme",
+    "formated like 1970-01-01 00:00": "formaté comme 1970-01-01 00:00",
     "my projects": "mes projets",
     "email of the contact": "email du contact",
     "my contacts": "mes contacts",
@@ -60,5 +60,6 @@
     "log out": "se déconnecter",
     "sign up": "s’enregistrer",
     "register": "s’enregistrer",
-    "join jiri": "rejoignez jiri"
+    "join jiri": "rejoignez jiri",
+    "your jiri": "votre jiri"
 }

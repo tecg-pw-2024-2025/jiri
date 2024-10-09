@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ContactFromUser;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class JiriStoreRequest extends FormRequest
 {
@@ -25,6 +27,8 @@ class JiriStoreRequest extends FormRequest
         return [
             'name' => 'required|string|between:3,255',
             'starting_at' => 'required|date',
+            'students' => ['array', new ContactFromUser],
+            'evaluators' => ['array', new ContactFromUser],
         ];
     }
 }

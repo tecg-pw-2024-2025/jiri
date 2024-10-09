@@ -5,55 +5,73 @@
           class="flex flex-col gap-8 bg-slate-50 p-4">
         @csrf
         <fieldset class="flex flex-col gap-4">
-            <legend class="font-bold uppercase mb-2">{{ __('your jiri') }}</legend>
-            <div class="flex flex-col gap-2">
-                <label for="name"
-                       class="font-bold first-letter:capitalize">{!! __('name') !!}
-                    <span class="block font-normal">{!! __('min 3 chars, max 255') !!}</span>
-                    @error('name')
-                    <span class="block text-red-500">{!! $message !!}</span>
-                    @enderror
-                </label>
-                <input id="name"
-                       type="text"
-                       value="{{ old('name') }}"
-                       name="name"
-                       placeholder="{!! __('jiri name') !!}"
-                       autocapitalize="none"
-                       autocorrect="off"
-                       spellcheck="false"
-                       class="border border-grey-700 focus:invalid:border-pink-500 invalid:text-pink-600 rounded-md p-2">
-            </div>
-            @php($now = now()->format('Y-m-d H:i'))
-            <div class="flex flex-col gap-2">
-                <label for="starting_at"
-                       class="font-bold first-letter:capitalize">{!! __('starting at') !!}
-                    <span class="block font-normal">{!! __('formated like')  !!} {{ $now }}</span>
-                    @error('starting_at')
-                    <span class="block text-red-500">{!! $message !!}</span>
-                    @enderror
-                </label>
-                <input id="starting_at"
-                       type="text"
-                       value="{{ old('starting_at') }}"
-                       name="starting_at"
-                       placeholder="{{ $now }}"
-                       autocapitalize="none"
-                       autocorrect="off"
-                       spellcheck="false"
-                       class="border border-grey-700 focus:invalid:border-pink-500 invalid:text-pink-600 rounded-md p-2">
-            </div>
+            <legend class="font-bold uppercase mb-2 tracking-wider">{{ __('your jiri') }}</legend>
+            <x-input-with-label id="name"
+                                name="name"
+                                type="text"
+                                label-text="name"
+                                help-text="min 3 chars, max 255"
+                                value="{{ old('name') }}"
+                                placeholder="jiri name"
+            />
+            @php $now = now()->format('Y-m-d H:i') @endphp
+            <x-input-with-label id="starting_at"
+                                name="starting_at"
+                                type="text"
+                                label-text="starting at"
+                                help-text="formated like 1970-01-01 00:00"
+                                value="{{ old('starting_at') }}"
+                                placeholder="{{ $now }}"
+            />
         </fieldset>
+        @if($contacts->count()>0)
+            <fieldset>
+                <legend class="mb-2">
+                    <span class=" font-bold uppercase tracking-wider">{!! __('participants') !!}</span>
+                    <span class="block">{!! __('sorted by family name') !!}</span>
+                </legend>
+                <div class="flex gap-8">
+                    <section>
+                        <h2 class="font-bold mb-2 first-letter:capitalize">{!! __('students') !!}</h2>
+                        <ol>
+                            @foreach($contacts as $contact)
+                                <li>
+                                    <x-input-with-label id="student-{{ $contact->id }}"
+                                                        name="students[]"
+                                                        type="checkbox"
+                                                        label-text="{{ $contact->fullname }}"
+                                                        value="{{ $contact->id }}"
+                                    />
+                                </li>
+                            @endforeach
+                        </ol>
+                    </section>
+                    <section>
+                        <h2 class="font-bold mb-2 first-letter:capitalize">{!! __('evaluators') !!}</h2>
+                        <ol>
+                            @foreach($contacts as $contact)
+                                <li>
+                                    <x-input-with-label id="evaluator-{{ $contact->id }}"
+                                                        name="evaluators[]"
+                                                        type="checkbox"
+                                                        label-text="{{ $contact->fullname }}"
+                                                        value="{{ $contact->id }}"
+                                    />
+                                </li>
+                            @endforeach
+                        </ol>
+                    </section>
+                </div>
+            </fieldset>
+        @else
+            <p>{!! __('no contacts available yet, consider creating some in the contacts section') !!}</p>
+        @endif
         <fieldset>
-            <legend class="font-bold uppercase">{!! __('the participants') !!}</legend>
+            <legend class="font-bold uppercase mb-2 tracking-wider">{!! __('the assignments') !!}</legend>
             <ol>
-                <li><input type="checkbox" value="">Jean marie</li>
-            </ol>
-        </fieldset>
-        <fieldset>
-            <legend class="font-bold uppercase">{!! __('the assignments') !!}</legend>
-            <ol>
-                <li><input type="checkbox" value="">Assignments</li>
+                <li><input type="checkbox"
+                           value="">Assignments
+                </li>
             </ol>
         </fieldset>
         <x-form-submission-button class="bg-blue-500">{!! __('create this jiri') !!}</x-form-submission-button>
