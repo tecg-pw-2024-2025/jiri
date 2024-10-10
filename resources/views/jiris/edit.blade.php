@@ -7,43 +7,26 @@
         @csrf
         @method('PATCH')
 
-        <div class="flex flex-col gap-2">
-            <label for="name"
-                   class="font-bold first-letter:capitalize">{!! __('name') !!}
-                <span class="block font-normal">{!! __('min 3 chars, max 255') !!}</span>
-                @error('name')
-                <span class="block text-red-500">{!! $message !!}</span>
-                @enderror
-            </label>
-            <input id="name"
-                   type="text"
-                   value="{{ old('name',$jiri) }}"
-                   name="name"
-                   placeholder="{!! __('jiri name') !!}"
-                   autocapitalize="none"
-                   autocorrect="off"
-                   spellcheck="false"
-                   class="border border-grey-700 focus:invalid:border-pink-500 invalid:text-pink-600 rounded-md p-2">
-        </div>
+        <x-input-with-label type="text"
+                            id="name"
+                            name="name"
+                            :value="old('name',$jiri)"
+                            label-text="name"
+                            help-text="min 3 chars, max 255"
+                            placeholder="jiri name"
+                            autofocus="true" />
+
         @php($now = now()->format('Y-m-d H:i'))
-        <div class="flex flex-col gap-2">
-            <label for="starting_at"
-                   class="font-bold first-letter:capitalize">{!! __('starting at') !!}
-                <span class="block font-normal">{!! __('formated like') !!} {{ $now }}</span>
-                @error('starting_at')
-                <span class="block text-red-500">{!! $message !!}</span>
-                @enderror
-            </label>
-            <input id="starting_at"
-                   type="text"
-                   value="{{ old('starting_at', $jiri->starting_at->format('Y-m-d H:i')) }}"
-                   name="starting_at"
-                   placeholder="{{ $now }}"
-                   autocapitalize="none"
-                   autocorrect="off"
-                   spellcheck="false"
-                   class="border border-grey-700 focus:invalid:border-pink-500 invalid:text-pink-600 rounded-md p-2">
-        </div>
+        @php($current_date = $jiri->starting_at->format('Y-m-d H:i'))
+
+        <x-input-with-label type="text"
+                            id="starting_at"
+                            name="starting_at"
+                            :value="old('starting_at',$current_date)"
+                            label-text="starting at"
+                            help-text="formated like 1970-01-01 00:00"
+                            :placeholder="$now" />
+
         <x-form-submission-button class="bg-blue-500">{!! __('update this jiri') !!}</x-form-submission-button>
     </form>
 </x-app-layout>
