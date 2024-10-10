@@ -6,6 +6,7 @@ use App\Http\Requests\ContactStoreRequest;
 use App\Http\Requests\ContactUpdateRequest;
 use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -14,7 +15,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Auth::user()->contacts;
 
         return view('contacts.index', compact('contacts'));
     }
@@ -32,7 +33,8 @@ class ContactController extends Controller
      */
     public function store(ContactStoreRequest $request): RedirectResponse
     {
-        $contact = Contact::create($request->validated());
+        $contact = Auth::user()?->contacts()
+            ->create($request->validated());
 
         return to_route('contacts.show', $contact);
     }

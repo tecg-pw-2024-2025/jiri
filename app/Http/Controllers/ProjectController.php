@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
 use App\Http\Requests\ProjectStoreRequest;
+use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -13,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Auth::user()->projects;
 
         return view('projects.index', compact('projects'));
     }
@@ -31,7 +32,8 @@ class ProjectController extends Controller
      */
     public function store(ProjectStoreRequest $request): RedirectResponse
     {
-        $project = Project::create($request->validated());
+        $project = Auth::user()?->projects()
+            ->create($request->validated());
 
         return to_route('projects.show', $project);
     }

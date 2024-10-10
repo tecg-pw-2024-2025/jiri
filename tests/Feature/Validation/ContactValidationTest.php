@@ -26,7 +26,6 @@ beforeEach(function () {
 
 test('a user cannot create a jiri with another user\'s contacts', function () {
     $this->jiri['students'] = $this->otherUser->contacts->pluck('id')->toArray();
-
     post(route('jiris.store'), $this->jiri)
         ->assertInvalid([
             'students'
