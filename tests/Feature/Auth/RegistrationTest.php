@@ -1,5 +1,9 @@
 <?php
 
+use function Pest\Laravel\assertAuthenticated;
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\post;
+
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
@@ -7,13 +11,12 @@ test('registration screen can be rendered', function () {
 });
 
 test('new users can register', function () {
-    $response = $this->post('/register', [
-        'name' => 'Test User',
+    $response = post(route('register'), [
         'email' => 'test@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
+        'password' => 'password1!',
     ]);
 
-    $this->assertAuthenticated();
+    assertAuthenticated();
+
     $response->assertRedirect(route('jiris.index', absolute: false));
 });
