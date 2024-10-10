@@ -13,6 +13,7 @@
                                 help-text="min 3 chars, max 255"
                                 value="{{ old('name') }}"
                                 placeholder="jiri name"
+                                autofocus="true"
             />
             @php $now = now()->format('Y-m-d H:i') @endphp
             <x-input-with-label id="starting_at"
@@ -25,60 +26,85 @@
             />
         </fieldset>
         @if($contacts->count()>0)
-            <fieldset>
-                <legend class="mb-2">
-                    <span class=" font-bold uppercase tracking-wider">{!! __('participants') !!}</span>
-                    <span class="block">{!! __('sorted by family name') !!}</span>
-                    @if($errors->has('evaluators') || $errors->has('students'))
-                        <span class="text-red-500 block">{!! $errors->first('students') ?: $errors->first('evaluators') !!}</span>
-                    @endif
-                </legend>
-                <div class="flex gap-8">
-                    <section>
-                        <h2 class="font-bold mb-2 first-letter:capitalize">{!! __('students') !!}</h2>
-                        <ol>
-                            @foreach($contacts as $contact)
-                                <li>
-                                    <x-input-with-label id="student-{{ $contact->id }}"
-                                                        name="students[]"
-                                                        type="checkbox"
-                                                        label-text="{{ $contact->fullname }}"
-                                                        value="{{ $contact->id }}"
-                                                        :checked-ids="old('students', [])"
-                                    />
-                                </li>
-                            @endforeach
-                        </ol>
-                    </section>
-                    <section>
-                        <h2 class="font-bold mb-2 first-letter:capitalize">{!! __('evaluators') !!}</h2>
-                        <ol>
-                            @foreach($contacts as $contact)
-                                <li>
-                                    <x-input-with-label id="evaluator-{{ $contact->id }}"
-                                                        name="evaluators[]"
-                                                        type="checkbox"
-                                                        label-text="{{ $contact->fullname }}"
-                                                        value="{{ $contact->id }}"
-                                                        :checked-ids="old('evaluators', [])"
-                                    />
-                                </li>
-                            @endforeach
-                        </ol>
-                    </section>
-                </div>
-            </fieldset>
+            <section>
+                <fieldset>
+                    <legend class="mb-2">
+                        <h2 class=" font-bold uppercase tracking-wider">{!! __('participants') !!}</h2>
+                        <span class="block">{!! __('sorted by family name') !!}</span>
+                        @if($errors->has('evaluators') || $errors->has('students'))
+                            <span class="text-red-500 block">{!! $errors->first('students') ?: $errors->first('evaluators') !!}</span>
+                        @endif
+                    </legend>
+                    <div class="flex gap-8">
+                        <section>
+                            <h3 class="font-bold mb-2 first-letter:capitalize">{!! __('students') !!}</h3>
+                            <ol>
+                                @foreach($contacts as $contact)
+                                    <li>
+                                        <x-input-with-label id="student-{{ $contact->id }}"
+                                                            name="students[]"
+                                                            type="checkbox"
+                                                            label-text="{{ $contact->fullname }}"
+                                                            value="{{ $contact->id }}"
+                                                            :checked-ids="old('students', [])"
+                                        />
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </section>
+                        <section>
+                            <h3 class="font-bold mb-2 first-letter:capitalize">{!! __('evaluators') !!}</h3>
+                            <ol>
+                                @foreach($contacts as $contact)
+                                    <li>
+                                        <x-input-with-label id="evaluator-{{ $contact->id }}"
+                                                            name="evaluators[]"
+                                                            type="checkbox"
+                                                            label-text="{{ $contact->fullname }}"
+                                                            value="{{ $contact->id }}"
+                                                            :checked-ids="old('evaluators', [])"
+                                        />
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </section>
+                    </div>
+                </fieldset>
+            </section>
         @else
             <p>{!! __('no contacts available yet, consider creating some in the contacts section') !!}</p>
         @endif
-        <fieldset>
-            <legend class="font-bold uppercase mb-2 tracking-wider">{!! __('the assignments') !!}</legend>
-            <ol>
-                <li><input type="checkbox"
-                           value="">Assignments
-                </li>
-            </ol>
-        </fieldset>
+
+        @if($projects->count()>0)
+            <section>
+                <fieldset>
+                    <legend class="mb-2">
+                        <h2 class=" font-bold uppercase tracking-wider">{!! __('projects') !!}</h2>
+                        <span class="block">{!! __('sorted by name') !!}</span>
+                        @if($errors->has('projects'))
+                            <span class="text-red-500 block">{!! $errors->first('projects') !!}</span>
+                        @endif
+                    </legend>
+                    <div class="flex gap-8">
+                        <ol>
+                            @foreach($projects as $project)
+                                <li>
+                                    <x-input-with-label id="project-{{ $project->id }}"
+                                                        name="projects[]"
+                                                        type="checkbox"
+                                                        label-text="{{ $project->name }}"
+                                                        value="{{ $project->id }}"
+                                                        :checked-ids="old('projects', [])"
+                                    />
+                                </li>
+                            @endforeach
+                        </ol>
+                    </div>
+                </fieldset>
+            </section>
+        @else
+            <p>{!! __('no projects available yet, consider creating some in the projects section') !!}</p>
+        @endif
         <x-form-submission-button class="bg-blue-500">{!! __('create this jiri') !!}</x-form-submission-button>
     </form>
 </x-app-layout>

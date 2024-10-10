@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendance;
+use App\Models\Assignment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class AttendanceController extends Controller
+class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -51,21 +51,18 @@ class AttendanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Attendance $attendance)
+    public function update(Request $request, Assignment $attendance)
     {
-        $attendance->role = $request->role;
-        $attendance->save();
 
-        return redirect()->route('jiris.show', $attendance->jiri_id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Attendance $attendance): RedirectResponse
+    public function destroy(Assignment $assignment): RedirectResponse
     {
-        $attendance->delete();
+        $assignment->delete();
 
-        return redirect()->route('jiris.show', $attendance->jiri_id);
+        return redirect()->route('jiris.show', $assignment->jiri_id);
     }
 }

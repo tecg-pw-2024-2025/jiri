@@ -57,17 +57,22 @@ class Jiri extends Model
 
     public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(Project::class, Assignment::class);
+        return $this
+            ->belongsToMany(Project::class, Assignment::class)
+            ->withPivot('id')
+            ->withTimestamps();
     }
 
     public function attendances(): HasMany
     {
-        return $this->HasMany(Attendance::class);
+        return $this
+            ->HasMany(Attendance::class);
     }
 
     public function assignments(): HasMany
     {
-        return $this->hasMany(Assignment::class);
+        return $this
+            ->hasMany(Assignment::class);
     }
 
 }

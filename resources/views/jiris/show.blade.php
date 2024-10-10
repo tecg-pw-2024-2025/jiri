@@ -29,8 +29,10 @@
             </x-form-submission-button>
         </form>
     </div>
-
     <div class="flex flex-col gap-8">
+        <!-- *************** -->
+        <!-- Les évaluateurs -->
+        <!-- *************** -->
         <section class="flex flex-col gap-2">
             <header>
                 <h2 class="text-2xl font-bold first-letter:capitalize">{!! __('list of the evaluators') !!}</h2>
@@ -53,10 +55,21 @@
                                 {!! __('change role to student') !!}
                             </x-form-submission-button>
                         </form>
+                        <form action="{{route('attendances.destroy',$evaluator->pivot->id)}}"
+                              method="post">
+                            @csrf
+                            @method('delete')
+                            <x-form-submission-button class="bg-red-500">
+                                {!! __('remove from jiri') !!}
+                            </x-form-submission-button>
+                        </form>
                     </li>
                 @endforeach
             </ul>
         </section>
+        <!-- ************* -->
+        <!-- Les étudiants -->
+        <!-- ************* -->
         <section class="flex flex-col gap-2">
             <header>
                 <h2 class="text-2xl font-bold first-letter:capitalize">{!! __('list of the students') !!}</h2>
@@ -77,6 +90,40 @@
                                    value="{{ \App\Enums\ContactRoles::Evaluator->value }}">
                             <x-form-submission-button class="bg-green-500">
                                 {!! __('change role to evaluator') !!}
+                            </x-form-submission-button>
+                        </form>
+                        <form action="{{route('attendances.destroy',$student->pivot->id)}}"
+                              method="post">
+                            @csrf
+                            @method('delete')
+                            <x-form-submission-button class="bg-red-500">
+                                {!! __('remove from jiri') !!}
+                            </x-form-submission-button>
+                        </form>
+                    </li>
+                @endforeach
+            </ul>
+        </section>
+        <!-- *********** -->
+        <!-- Les projets -->
+        <!-- *********** -->
+        <section class="flex flex-col gap-2">
+            <header>
+                <h2 class="text-2xl font-bold first-letter:capitalize">{!! __('list of the projects') !!}</h2>
+                <p class="first-letter:capitalize">{!! __('sorted by name') !!}</p>
+            </header>
+
+            <ul class="flex flex-col gap-4">
+                @foreach($jiri->projects as $project)
+                    <li class="flex items-center gap-2">
+                        <a href=""
+                           class="underline text-blue-500 inline-block first-letter:capitalize">{{ $project->name }}</a>
+                        <form action="{{ route('assignments.destroy', $project->pivot->id) }}"
+                              method="post">
+                            @csrf
+                            @method('delete')
+                            <x-form-submission-button class="bg-red-500">
+                                {!! __('remove from jiri') !!}
                             </x-form-submission-button>
                         </form>
                     </li>

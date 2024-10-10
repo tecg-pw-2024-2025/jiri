@@ -20,4 +20,10 @@ class AttendancePolicy
         return $user->id === $attendance->contact->user_id
             && $user->id === $attendance->jiri->user_id;
     }
+
+    public function delete(User $user, Attendance $attendance): bool
+    {
+        return $user->id === $attendance->contact->user_id
+            && $user->id === $attendance->jiri->user_id;
+    }
 }

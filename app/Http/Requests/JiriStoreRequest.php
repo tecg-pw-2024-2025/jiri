@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\ContactFromUser;
+use App\Rules\ModelFromUser;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,8 +26,9 @@ class JiriStoreRequest extends FormRequest
         return [
             'name' => 'required|string|between:3,255',
             'starting_at' => 'required|date',
-            'students' => ['array', new ContactFromUser],
-            'evaluators' => ['array', new ContactFromUser],
+            'students' => ['array', new ModelFromUser],
+            'evaluators' => ['array', new ModelFromUser],
+            'projects' => ['array', new ModelFromUser],
         ];
     }
 }

@@ -39,8 +39,15 @@ class JiriController extends Controller
 
         $jiri = Auth::user()?->jiris()->create($validated);
 
-        $jiri->students()->attach($validated['students']);
-        $jiri->evaluators()->attach($validated['evaluators']);
+        if ($request->has('students')) {
+            $jiri->students()->attach($validated['students']);
+        }
+        if ($request->has('evaluators')) {
+            $jiri->evaluators()->attach($validated['evaluators']);
+        }
+        if ($request->has('projects')) {
+            $jiri->projects()->attach($validated['projects']);
+        }
 
         return to_route('jiris.show', $jiri);
     }
@@ -50,10 +57,12 @@ class JiriController extends Controller
      */
     public function show(Jiri $jiri)
     {
-        $jiri->load([
-            'students' => fn($query) => $query->orderBy('last_name'),
-            'evaluators' => fn($query) => $query->orderBy('last_name'),
-        ]);
+        $jiri
+            ->load([
+                'students' => fn($query) => $query->orderBy('last_name'),
+                'evaluators' => fn($query) => $query->orderBy('last_name'),
+            ])
+            ->loadCount('students', 'evaluators', 'contacts');
 
         return view('jiris.show', compact('jiri'));
     }

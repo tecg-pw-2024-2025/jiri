@@ -22,6 +22,7 @@
                                 label-text="email address"
                                 value="{{ old('email') }}"
                                 placeholder="jon@doe.com"
+                                autofocus
             />
             <x-input-with-label id="password"
                                 name="password"

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AssignmentController;
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -19,10 +19,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //Create, Update, Delete
     /*    Route::post('/jiris', [JiriController::class, 'store'])
             ->name('jiris.store');*/
-    Route::patch('/attendances/{attendance}', [AttendanceController::class, 'update'])
-        ->can('update', 'attendance')
-        ->name('attendances.update');
-    Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy'])
-        ->can('delete', 'attendance')
-        ->name('attendances.destroy');
+    /*Route::patch('/assignments/{assignment}', [AssignmentController::class, 'update'])
+        ->can('update', 'assignment')
+        ->name('assignments.update');*/
+    Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])
+        ->can('delete', 'assignment')
+        ->name('assignments.destroy');
 });

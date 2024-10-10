@@ -1,4 +1,13 @@
-@props(['type'=>'text', 'name', 'id','label-text', 'value'=>'', 'placeholder', 'help-text', 'checkedIds'=>[]])
+@props([
+    'type'=>'text',
+    'name',
+    'id','label-text',
+    'value'=>'',
+    'placeholder',
+    'autofocus'=>false,
+    'help-text',
+    'checkedIds'=>[]
+    ])
 
 <div {{ $attributes->class(['flex gap-2',
                     'flex-col' => ($type !== 'checkbox' && $type !== 'radio'),
@@ -22,6 +31,9 @@
            autocapitalize="none"
            autocorrect="off"
            spellcheck="false"
+           @if($autofocus)
+               autofocus
+           @endif
            @checked(in_array($value, $checkedIds, true))
            class="border border-gray-300 focus:invalid:border-red-500 invalid:text-red-600 rounded-md p-2 placeholder-gray-300"
     >
