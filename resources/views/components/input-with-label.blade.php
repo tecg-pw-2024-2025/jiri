@@ -1,4 +1,4 @@
-@props(['type'=>'text', 'name', 'id','label-text', 'value', 'placeholder', 'help-text', 'checkedIds'=>[]])
+@props(['type'=>'text', 'name', 'id','label-text', 'value'=>'', 'placeholder', 'help-text', 'checkedIds'=>[]])
 
 <div {{ $attributes->class(['flex gap-2',
                     'flex-col' => ($type !== 'checkbox' && $type !== 'radio'),

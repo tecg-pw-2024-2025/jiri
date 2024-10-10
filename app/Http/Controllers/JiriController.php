@@ -50,7 +50,10 @@ class JiriController extends Controller
      */
     public function show(Jiri $jiri)
     {
-        $jiri->load('students', 'evaluators');
+        $jiri->load([
+            'students' => fn($query) => $query->orderBy('last_name'),
+            'evaluators' => fn($query) => $query->orderBy('last_name'),
+        ]);
 
         return view('jiris.show', compact('jiri'));
     }

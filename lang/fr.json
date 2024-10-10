@@ -61,5 +61,10 @@
     "sign up": "s’enregistrer",
     "register": "s’enregistrer",
     "join jiri": "rejoignez jiri",
-    "your jiri": "votre jiri"
+    "your jiri": "votre jiri",
+    "sorted by family name": "triés par nom de famille",
+    "list of the evaluators": "liste des évaluateurs",
+    "list of the students": "liste des étudiants",
+    "change role to student": "changer le rôle en étudiant",
+    "change role to evaluator": "changer le rôle en évaluateur"
 }
