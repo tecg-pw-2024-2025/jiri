@@ -44,6 +44,7 @@
                                                         type="checkbox"
                                                         label-text="{{ $contact->fullname }}"
                                                         value="{{ $contact->id }}"
+                                                        :checked-ids="old('students', [])"
                                     />
                                 </li>
                             @endforeach
@@ -59,6 +60,7 @@
                                                         type="checkbox"
                                                         label-text="{{ $contact->fullname }}"
                                                         value="{{ $contact->id }}"
+                                                        :checked-ids="old('evaluators', [])"
                                     />
                                 </li>
                             @endforeach
