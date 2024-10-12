@@ -31,7 +31,7 @@
                                 help-text="at least 8 characters, letters, digits, and special chars (+-*/%!?_)"
             />
             <div>
-                <x-form-submission-button class="bg-blue-500">{!! __('register') !!}</x-form-submission-button>
+                <x-form-submission-button class="bg-blue-500" icon="icons.register">{!! __('register') !!}</x-form-submission-button>
             </div>
         </form>
         <a href="{{ route('login') }}"

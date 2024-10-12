@@ -8,7 +8,7 @@
             <form action="{{ route('logout') }}"
                   method="post">
                 @csrf
-                <x-form-submission-button class="bg-red-500">{!! __('logout') !!}</x-form-submission-button>
+                <x-form-submission-button class="bg-red-500" icon="icons.logout">{!! __('logout') !!}</x-form-submission-button>
             </form>
         </li>
     </x-slot:items>

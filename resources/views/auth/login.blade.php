@@ -33,7 +33,7 @@
                                 label-text="remember me for 15 days"
             />
             <div>
-                <x-form-submission-button class="bg-blue-500">{!! __('login') !!}</x-form-submission-button>
+                <x-form-submission-button class="bg-blue-500" icon="icons.login">{!! __('login') !!}</x-form-submission-button>
             </div>
         </form>
         <a href="{!! route('register') !!}"

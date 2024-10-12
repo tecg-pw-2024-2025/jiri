@@ -24,7 +24,7 @@
               method="post">
             @csrf
             @method('DELETE')
-            <x-form-submission-button class="bg-red-500">
+            <x-form-submission-button class="bg-red-500" icon="icons.remove">
                 {!! __('delete this jiri') !!}
             </x-form-submission-button>
         </form>
