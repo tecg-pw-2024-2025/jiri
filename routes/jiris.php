@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\JiriController;
 
-
 Route::middleware(['auth', 'verified'])->group(function () {
-//Jiris
-//Read
+    //Jiris
+    //Read
     Route::get('/jiris', [JiriController::class, 'index'])
         ->name('jiris.index');
     Route::get('/jiris/create', [JiriController::class, 'create'])
@@ -16,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/jiris/{jiri}/edit', [JiriController::class, 'edit'])
         ->can('update', 'jiri')
         ->name('jiris.edit');
-//Create, Update, Delete
+    //Create, Update, Delete
     Route::post('/jiris', [JiriController::class, 'store'])
         ->name('jiris.store');
     Route::patch('/jiris/{jiri}', [JiriController::class, 'update'])

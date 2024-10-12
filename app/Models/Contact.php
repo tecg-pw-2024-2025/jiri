@@ -22,11 +22,11 @@ class Contact extends Model
     public function fullname(): Attribute
     {
         return Attribute::make(
-            get: fn(mixed $value, array $attributes) => $attributes['first_name'].' '.$attributes['last_name'],
+            get: fn (mixed $value, array $attributes) => $attributes['first_name'].' '.$attributes['last_name'],
             // The following setter is not used in this project, but it is included for demonstration purposes.
-            set: fn(string $value) => [
+            set: fn (string $value) => [
                 'first_name' => explode(' ', $value)[0],
-                'last_name' => explode(' ', $value)[1]
+                'last_name' => explode(' ', $value)[1],
             ]
         );
     }

@@ -3,7 +3,12 @@
 use App\Models\Jiri;
 use App\Models\User;
 
-use function Pest\Laravel\{assertDatabaseHas, assertDatabaseMissing, delete, get, patch, post};
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertDatabaseMissing;
+use function Pest\Laravel\delete;
+use function Pest\Laravel\get;
+use function Pest\Laravel\patch;
+use function Pest\Laravel\post;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -42,7 +47,6 @@ it('has a route to display an edit form for a jiri to auth users', function () {
 
 // The routes changing the database
 it('has a route to store a jiri to auth users', function () {
-
     $jiri = Jiri::factory()->make([
         'user_id' => $this->user->id,
     ])->toArray();

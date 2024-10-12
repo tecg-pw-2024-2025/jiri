@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="font-bold text-2xl first-letter:capitalize">{!! __('create a new jiri') !!}</h1>
+    <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('create a new jiri') !!}</h1>
     <form action="{{ route('jiris.store') }}"
           method="post"
           class="flex flex-col gap-8 bg-slate-50 p-4">
@@ -13,7 +13,8 @@
                                 help-text="min 3 chars, max 255"
                                 value="{{ old('name') }}"
                                 placeholder="jiri name"
-                                autofocus="true"
+                                autofocus
+                                required
             />
             @php $now = now()->format('Y-m-d H:i') @endphp
             <x-input-with-label id="starting_at"
@@ -105,6 +106,11 @@
         @else
             <p>{!! __('no projects available yet, consider creating some in the projects section') !!}</p>
         @endif
-        <x-form-submission-button class="bg-blue-500">{!! __('create this jiri') !!}</x-form-submission-button>
+        <div>
+            <x-form-submission-button class="bg-blue-700"
+                                      icon="add">
+                {!! __('create this jiri') !!}
+            </x-form-submission-button>
+        </div>
     </form>
 </x-app-layout>

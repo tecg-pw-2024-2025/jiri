@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="text-3xl font-bold first-letter:capitalize">{!! __('my contacts') !!}</h1>
+    <h1 class="text-xl text-blue-900 font-bold first-letter:capitalize">{!! __('my contacts') !!}</h1>
     @if($contacts)
         <x-contacts.list :contacts="$contacts" />
     @else
@@ -7,9 +7,10 @@
     @endif
 
     <div class="flex justify-end">
-        <a href="{{ route('contacts.create') }}"
-           class="underline text-blue-500 flex items-center gap-2">
-            <x-icons.add />
-            <span>{{ __('create a new contact') }}</span></a>
+        <x-link :route="route('contacts.create')"
+                icon="add"
+                icon-position="before">
+            <span>{{ __('create a new contact') }}</span>
+        </x-link>
     </div>
 </x-app-layout>

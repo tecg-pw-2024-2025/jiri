@@ -25,13 +25,12 @@ beforeEach(function () {
     actingAs($this->user);
 });
 
-
 test('a user cannot create a jiri with students using another user\'s contacts', function () {
     $this->jiri['students'] = $this->otherUser->contacts->pluck('id')->toArray();
 
     post(route('jiris.store'), $this->jiri)
         ->assertInvalid([
-            'students'
+            'students',
         ]);
 });
 test('a user cannot create a jiri with evaluators using another user\'s contacts', function () {
@@ -39,7 +38,7 @@ test('a user cannot create a jiri with evaluators using another user\'s contacts
 
     post(route('jiris.store'), $this->jiri)
         ->assertInvalid([
-            'evaluators'
+            'evaluators',
         ]);
 });
 
@@ -48,7 +47,7 @@ test('a user cannot create a jiri with another user\'s projects', function () {
 
     post(route('jiris.store'), $this->jiri)
         ->assertInvalid([
-            'projects'
+            'projects',
         ]);
 });
 
@@ -57,7 +56,7 @@ test('a user can create a jiri with students from his own contacts', function ()
 
     post(route('jiris.store'), $this->jiri)
         ->assertValid([
-            'students'
+            'students',
         ]);
 });
 
@@ -66,7 +65,7 @@ test('a user can create a jiri with evaluators from his own contacts', function 
 
     post(route('jiris.store'), $this->jiri)
         ->assertValid([
-            'evaluators'
+            'evaluators',
         ]);
 });
 
@@ -75,6 +74,6 @@ test('a user can create a jiri with his own projects', function () {
 
     post(route('jiris.store'), $this->jiri)
         ->assertValid([
-            'projects'
+            'projects',
         ]);
 });

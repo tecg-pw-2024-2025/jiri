@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\User;
 
 test('a user can have many jiris', function () {

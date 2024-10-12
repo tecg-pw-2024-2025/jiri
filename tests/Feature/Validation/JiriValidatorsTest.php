@@ -10,7 +10,7 @@ beforeEach(function () {
 });
 
 it('validates the required fields on a jiri creation', function () {
-        post(route('jiris.store'), [])->assertSessionHasErrors(['name', 'starting_at']);
+    post(route('jiris.store'), [])->assertSessionHasErrors(['name', 'starting_at']);
 });
 
 it('validates the starting_at field as a date on a jiri creation', function () {

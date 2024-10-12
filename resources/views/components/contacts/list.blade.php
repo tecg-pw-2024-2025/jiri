@@ -1,6 +1,7 @@
 <ol>
     @foreach ($contacts as $contact)
-        <li><a class="underline text-blue-500"
-               href="{{ route('contacts.show',$contact) }}">{{ $contact->full_name }}</a></li>
+        <li>
+            <x-link :route="route('contacts.show',$contact)">{{ $contact->full_name }}</x-link>
+        </li>
     @endforeach
 </ol>

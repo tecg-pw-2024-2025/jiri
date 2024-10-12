@@ -20,14 +20,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('projects.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(ProjectStoreRequest $request): RedirectResponse
@@ -36,6 +28,14 @@ class ProjectController extends Controller
             ->create($request->validated());
 
         return to_route('projects.show', $project);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('projects.create');
     }
 
     /**

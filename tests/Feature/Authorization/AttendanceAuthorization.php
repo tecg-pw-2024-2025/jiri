@@ -1,9 +1,12 @@
 <?php
 
 use App\Enums\ContactRoles;
-use App\Models\{Contact, Jiri, User};
+use App\Models\Contact;
+use App\Models\Jiri;
+use App\Models\User;
 
-use function Pest\Laravel\{actingAs, patch};
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\patch;
 
 test('a user can not change the role in the attendance belonging to another user', function () {
     $user1 = User::factory()
@@ -15,7 +18,7 @@ test('a user can not change the role in the attendance belonging to another user
                             return ['user_id' => $jiri->user_id];
                         }),
                     [
-                        'role' => ContactRoles::Evaluator->value
+                        'role' => ContactRoles::Evaluator->value,
                     ]
                 )
         )
@@ -31,7 +34,7 @@ test('a user can not change the role in the attendance belonging to another user
                             return ['user_id' => $jiri->user_id];
                         }),
                     [
-                        'role' => ContactRoles::Evaluator->value
+                        'role' => ContactRoles::Evaluator->value,
                     ]
                 )
         )
@@ -40,7 +43,6 @@ test('a user can not change the role in the attendance belonging to another user
     actingAs($user1);
 
     patch(route('attendances.update', $user2->jiris->first()->attendances->first()), [
-        'role' => ContactRoles::Student->value
+        'role' => ContactRoles::Student->value,
     ])->assertForbidden();
-
 });

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ContactController;
 
-
 Route::middleware(['auth', 'verified'])->group(function () {
     //Contacts
     //Read

@@ -6,7 +6,7 @@
 ])
 
 <label for="{{ $id }}"
-        {{ $attributes->class(['font-medium first-letter:uppercase']) }}>{!! __($labelText) !!}
+    {{ $attributes->class(['font-medium first-letter:capitalize']) }}>{!! __($labelText) !!}
     @if(isset($helpText))
         <span class="block font-normal text-gray-500">{!! __($helpText) !!}</span>
     @endif

@@ -1,6 +1,7 @@
 <ol>
     @foreach ($projects as $project)
-        <li><a class="underline text-blue-500"
-               href="{{ route('projects.show',$project) }}">{{ $project->name }}</a></li>
+        <li>
+            <x-link :route="route('projects.show',$project)">{{ $project->name }}</x-link>
+        </li>
     @endforeach
 </ol>

@@ -10,7 +10,7 @@
         <title>Jiris - {!! __('your jiris management app') !!}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="pb-4 font-sans">
+    <body class="font-sans text-gray-900 flex flex-col h-[100vh]">
         <a class="sr-only"
            href="#main-menu">{!! __('go to main menu') !!}</a>
         <div class="flex flex-col-reverse gap-6">
@@ -19,6 +19,8 @@
             </main>
             <x-navigations.guest />
         </div>
-
+        <footer class="mt-auto bg-slate-50 p-4 text-right">
+            <p>Projet réalisé pour le cours de projets web 2024-2025</p>
+        </footer>
     </body>
 </html>

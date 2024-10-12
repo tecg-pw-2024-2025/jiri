@@ -1,7 +1,6 @@
 <?php
 
 use function Pest\Laravel\assertAuthenticated;
-use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\post;
 
 test('registration screen can be rendered', function () {

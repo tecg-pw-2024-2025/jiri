@@ -37,19 +37,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
     public function jiris(): HasMany
     {
         return $this
@@ -78,17 +65,17 @@ class User extends Authenticatable
             ->hasMany(Contact::class);
     }
 
-    public function attendances(): HasManyThrough
-    {
-        return $this
-            ->hasManyThrough(Attendance::class, Jiri::class);
-    }
-
     public function student_attendances(): HasManyThrough
     {
         return $this
             ->attendances()
             ->where('role', ContactRoles::Student->value);
+    }
+
+    public function attendances(): HasManyThrough
+    {
+        return $this
+            ->hasManyThrough(Attendance::class, Jiri::class);
     }
 
     public function evaluator_attendances(): HasManyThrough
@@ -107,12 +94,25 @@ class User extends Authenticatable
     public function fullName(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value, array $attributes) => $attributes['first_name'].' '.$attributes['last_name'],
+            get: fn (string $value, array $attributes) => $attributes['first_name'].' '.$attributes['last_name'],
             // The following setter is not used in this project, but it is included for demonstration purposes.
-            set: fn(string $value) => [
+            set: fn (string $value) => [
                 'first_name' => explode(' ', $value)[0],
-                'last_name' => explode(' ', $value)[1]
+                'last_name' => explode(' ', $value)[1],
             ]
         )->shouldCache();
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }

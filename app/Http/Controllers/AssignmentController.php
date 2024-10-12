@@ -51,10 +51,7 @@ class AssignmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Assignment $attendance)
-    {
-
-    }
+    public function update(Request $request, Assignment $attendance) {}
 
     /**
      * Remove the specified resource from storage.

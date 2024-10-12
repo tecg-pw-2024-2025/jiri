@@ -21,16 +21,6 @@ class JiriController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $contacts = Auth::user()?->contacts()->orderBy('last_name')->get();
-        $projects = Auth::user()?->projects()->orderBy('name')->get();
-        return view('jiris.create', compact('contacts', 'projects'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(JiriStoreRequest $request): RedirectResponse
@@ -53,14 +43,25 @@ class JiriController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $contacts = Auth::user()?->contacts()->orderBy('last_name')->get();
+        $projects = Auth::user()?->projects()->orderBy('name')->get();
+
+        return view('jiris.create', compact('contacts', 'projects'));
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(Jiri $jiri)
     {
         $jiri
             ->load([
-                'students' => fn($query) => $query->orderBy('last_name'),
-                'evaluators' => fn($query) => $query->orderBy('last_name'),
+                'students' => fn ($query) => $query->orderBy('last_name'),
+                'evaluators' => fn ($query) => $query->orderBy('last_name'),
             ])
             ->loadCount('students', 'evaluators', 'contacts');
 

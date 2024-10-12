@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="text-3xl font-bold first-letter:capitalize">{!! __('my jiris') !!}</h1>
+    <h1 class="text-xl text-blue-900 font-bold first-letter:capitalize text-blue-900">{!! __('my jiris') !!}</h1>
     @if($pastJiris)
         <h2 class="font-bold first-letter:capitalize">{!! __('past jiris') !!}</h2>
         <x-jiris.list :jiris="$pastJiris" />
@@ -11,9 +11,10 @@
     @endif
 
     <div class="flex justify-end">
-        <a href="{{ route('jiris.create') }}"
-           class="underline text-blue-500 flex items-center gap-2">
-            <x-icons.add />
-            <span>{{ __('create a new jiri') }}</span></a>
+        <x-link :route="route('jiris.create')"
+                icon="add"
+                icon-position="before">
+            <span>{{ __('create a new jiri') }}</span>
+        </x-link>
     </div>
 </x-app-layout>

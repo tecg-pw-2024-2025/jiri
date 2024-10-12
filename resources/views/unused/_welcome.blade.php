@@ -15,7 +15,7 @@
         <div class="flex flex-col-reverse gap-6">
             <main class="flex flex-col gap-4 px-4">
                 <div class="mb-4">
-                    <h1 class="font-bold text-2xl mb-4 first-letter:uppercase">{!! __('jiri, the app for managing your jiris') !!}</h1>
+                    <h1 class="font-bold text-2xl mb-4 first-letter:capitalize">{!! __('jiri, the app for managing your jiris') !!}</h1>
                     <p class="first-letter:capitalize">{!! __('intro to jiri') !!}</p>
                 </div>
                 <section class="bg-slate-50 drop-shadow-[0px_0px_1px_rgba(0,0,0,0.15)] rounded-md p-4 flex flex-col gap-8">
@@ -82,7 +82,7 @@
                        class="block text-right underline">{!! __('i don\'t have an account yet') !!}</a>
                 </section>
             </main>
-            <x-navigations.guest/>
+            <x-navigations.guest />
         </div>
     </body>
 </html>

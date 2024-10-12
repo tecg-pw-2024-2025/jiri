@@ -5,7 +5,6 @@ use App\Models\User;
 use function Pest\Laravel\actingAs;
 
 beforeEach(function () {
-
     $this->user = User::factory()->create();
 
     $this->jiri = $this->user->jiris()->create([
@@ -18,13 +17,13 @@ beforeEach(function () {
             'first_name' => 'Stacy',
             'last_name' => 'Roob',
             'email' => 'carmelo.jerde@hotmail.com',
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ],
         [
             'first_name' => 'Claude',
             'last_name' => 'Katz',
             'email' => 'jarrod.mayert@hotmail.com',
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ],
     ]);
     actingAs($this->user);
@@ -50,11 +49,11 @@ test('a jiri has evaluators', function () {
         ->and($this->jiri->evaluators->last()->fullname)->toBe('Claude Katz');
 });
 
-test('a jiri has assignments', function(){
+test('a jiri has assignments', function () {
     $this->jiri->projects()->create([
         'name' => 'Project name',
         'description' => 'Project description',
-        'user_id' => $this->user->id
+        'user_id' => $this->user->id,
     ]);
 
     expect($this->jiri->projects->count())->toBe(1)

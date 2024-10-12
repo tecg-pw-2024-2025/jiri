@@ -1,5 +1,6 @@
 @props([
     'type'=>'text',
+    'required'=>false,
     'name',
     'id','label-text',
     'value'=>'',
@@ -28,6 +29,9 @@
                   spellcheck="false"
                   @if($autofocus)
                       autofocus
+                  @endif
+                  @if($required)
+                      required
                   @endif
                   class="border border-gray-300 focus:invalid:border-red-500 invalid:text-red-600 rounded-md p-2 placeholder-gray-300"
         >{{ $value }}</textarea>

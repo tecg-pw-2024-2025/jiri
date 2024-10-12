@@ -1,6 +1,7 @@
+@php use App\Enums\ContactRoles; @endphp
 <x-app-layout>
     <div class="flex flex-col gap-4 mb-8">
-        <h1 class="text-3xl font-bold">{{ $jiri->name }}</h1>
+        <h1 class="text-xl text-blue-900 font-bold">{{ $jiri->name }}</h1>
         <dl class="flex flex-col gap-4 bg-slate-50 p-4">
             <div>
                 <dt class="font-bold first-letter:capitalize">{!! __('name of the jiri') !!}</dt>
@@ -18,13 +19,14 @@
         </dl>
         <div>
             <a href="{{ route('jiris.edit',$jiri) }}"
-               class="underline text-blue-500 inline-block first-letter:capitalize">{!! __('update this jiri') !!}</a>
+               class="underline text-blue-700 inline-block first-letter:capitalize">{!! __('update this jiri') !!}</a>
         </div>
         <form action="{{ route('jiris.destroy',$jiri) }}"
               method="post">
             @csrf
             @method('DELETE')
-            <x-form-submission-button class="bg-red-500" icon="icons.remove">
+            <x-form-submission-button class="bg-red-700"
+                                      icon="remove">
                 {!! __('delete this jiri') !!}
             </x-form-submission-button>
         </form>
@@ -35,7 +37,7 @@
         <!-- *************** -->
         <section class="flex flex-col gap-2">
             <header>
-                <h2 class="text-2xl font-bold first-letter:capitalize">{!! __('list of the evaluators') !!}</h2>
+                <h2 class="text-xl font-bold first-letter:capitalize">{!! __('list of the evaluators') !!}</h2>
                 <p class="first-letter:capitalize">{!! __('sorted by family name') !!}</p>
             </header>
 
@@ -43,15 +45,15 @@
                 @foreach($jiri->evaluators as $evaluator)
                     <li class="flex items-center gap-2">
                         <a href=""
-                           class="underline text-blue-500 inline-block first-letter:capitalize">{{ $evaluator->full_name }}</a>
+                           class="underline text-blue-700 inline-block first-letter:capitalize">{{ $evaluator->full_name }}</a>
                         <form action="{{route('attendances.update',$evaluator->pivot->id)}}"
                               method="post">
                             @csrf
                             @method('PATCH')
                             <input type="hidden"
                                    name="role"
-                                   value="{{ \App\Enums\ContactRoles::Student->value }}">
-                            <x-form-submission-button class="bg-green-500">
+                                   value="{{ ContactRoles::Student->value }}">
+                            <x-form-submission-button class="bg-green-700" icon="student">
                                 {!! __('change role to student') !!}
                             </x-form-submission-button>
                         </form>
@@ -59,7 +61,7 @@
                               method="post">
                             @csrf
                             @method('delete')
-                            <x-form-submission-button class="bg-red-500">
+                            <x-form-submission-button class="bg-red-700" icon="unlink">
                                 {!! __('remove from jiri') !!}
                             </x-form-submission-button>
                         </form>
@@ -72,7 +74,7 @@
         <!-- ************* -->
         <section class="flex flex-col gap-2">
             <header>
-                <h2 class="text-2xl font-bold first-letter:capitalize">{!! __('list of the students') !!}</h2>
+                <h2 class="text-xl font-bold first-letter:capitalize">{!! __('list of the students') !!}</h2>
                 <p class="first-letter:capitalize">{!! __('sorted by family name') !!}</p>
             </header>
 
@@ -80,15 +82,15 @@
                 @foreach($jiri->students as $student)
                     <li class="flex items-center gap-2">
                         <a href=""
-                           class="underline text-blue-500 inline-block first-letter:capitalize">{{ $student->full_name }}</a>
+                           class="underline text-blue-700 inline-block first-letter:capitalize">{{ $student->full_name }}</a>
                         <form action="{{route('attendances.update',$student->pivot->id)}}"
                               method="post">
                             @csrf
                             @method('PATCH')
                             <input type="hidden"
                                    name="role"
-                                   value="{{ \App\Enums\ContactRoles::Evaluator->value }}">
-                            <x-form-submission-button class="bg-green-500">
+                                   value="{{ ContactRoles::Evaluator->value }}">
+                            <x-form-submission-button class="bg-green-700" icon="evaluator">
                                 {!! __('change role to evaluator') !!}
                             </x-form-submission-button>
                         </form>
@@ -96,7 +98,7 @@
                               method="post">
                             @csrf
                             @method('delete')
-                            <x-form-submission-button class="bg-red-500">
+                            <x-form-submission-button class="bg-red-700" icon="unlink">
                                 {!! __('remove from jiri') !!}
                             </x-form-submission-button>
                         </form>
@@ -109,7 +111,7 @@
         <!-- *********** -->
         <section class="flex flex-col gap-2">
             <header>
-                <h2 class="text-2xl font-bold first-letter:capitalize">{!! __('list of the projects') !!}</h2>
+                <h2 class="text-xl font-bold first-letter:capitalize">{!! __('list of the projects') !!}</h2>
                 <p class="first-letter:capitalize">{!! __('sorted by name') !!}</p>
             </header>
 
@@ -117,12 +119,12 @@
                 @foreach($jiri->projects as $project)
                     <li class="flex items-center gap-2">
                         <a href=""
-                           class="underline text-blue-500 inline-block first-letter:capitalize">{{ $project->name }}</a>
+                           class="underline text-blue-700 inline-block first-letter:capitalize">{{ $project->name }}</a>
                         <form action="{{ route('assignments.destroy', $project->pivot->id) }}"
                               method="post">
                             @csrf
                             @method('delete')
-                            <x-form-submission-button class="bg-red-500">
+                            <x-form-submission-button class="bg-red-700" icon="unlink">
                                 {!! __('remove from jiri') !!}
                             </x-form-submission-button>
                         </form>

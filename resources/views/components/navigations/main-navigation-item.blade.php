@@ -1,3 +1,4 @@
 @props(['route', 'text'])
-<li {{ $attributes }}><a class="underline tracking-wider"
-                         href="{{ route($route) }}">{!! __($text) !!}</a></li>
+<li {{ $attributes }}>
+    <x-link :route="route($route)">{!! __($text) !!}</x-link>
+</li>

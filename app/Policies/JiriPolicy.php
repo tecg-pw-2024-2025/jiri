@@ -4,17 +4,16 @@ namespace App\Policies;
 
 use App\Models\Jiri;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class JiriPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-/*    public function viewAny(User $user): Response
-    {
+    /*    public function viewAny(User $user): Response
+        {
 
-    }*/
+        }*/
 
     /**
      * Determine whether the user can view the model.

@@ -22,19 +22,12 @@ class Jiri extends Model
     protected $fillable = [
         'name',
         'starting_at',
-        'user_id'
+        'user_id',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function contacts(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(Contact::class, Attendance::class)
-            ->withTimestamps();
     }
 
     public function students(): BelongsToMany
@@ -43,6 +36,13 @@ class Jiri extends Model
             ->contacts()
             ->withPivot('id')
             ->withPivotValue('role', ContactRoles::Student->value)
+            ->withTimestamps();
+    }
+
+    public function contacts(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Contact::class, Attendance::class)
             ->withTimestamps();
     }
 
@@ -74,5 +74,4 @@ class Jiri extends Model
         return $this
             ->hasMany(Assignment::class);
     }
-
 }

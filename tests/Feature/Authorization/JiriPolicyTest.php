@@ -3,7 +3,12 @@
 use App\Models\Jiri;
 use App\Models\User;
 
-use function Pest\Laravel\{assertDatabaseHas, assertDatabaseMissing, delete, get, patch, post};
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertDatabaseMissing;
+use function Pest\Laravel\delete;
+use function Pest\Laravel\get;
+use function Pest\Laravel\patch;
+use function Pest\Laravel\post;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -83,4 +88,3 @@ test('a user cannot delete a jiri he did not create', function () {
 
     assertDatabaseHas('jiris', $jiri->toArray());
 });
-

@@ -25,17 +25,17 @@ class DatabaseSeeder extends Seeder
                     ->hasAttached(
                         Contact::factory()
                             ->count(3)
-                            ->state(fn(array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
-                        fn() => [
+                            ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
+                        fn () => [
                             'role' => random_int(0, 1) ?
                                 ContactRoles::Evaluator->value :
-                                ContactRoles::Student->value
+                                ContactRoles::Student->value,
                         ]
                     )
                     ->hasAttached(
                         Project::factory()
                             ->count(2)
-                            ->state(fn(array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id])
+                            ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id])
                     )
             )
             ->create();
@@ -47,17 +47,17 @@ class DatabaseSeeder extends Seeder
                     ->hasAttached(
                         Contact::factory()
                             ->count(3)
-                            ->state(fn(array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
-                        fn() => [
+                            ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
+                        fn () => [
                             'role' => random_int(0, 1) ?
                                 ContactRoles::Evaluator->value :
-                                ContactRoles::Student->value
+                                ContactRoles::Student->value,
                         ]
                     )
                     ->hasAttached(
                         Project::factory()
                             ->count(2)
-                            ->state(fn(array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id])
+                            ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id])
                     )
             )
             ->create([

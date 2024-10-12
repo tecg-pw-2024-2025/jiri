@@ -1,6 +1,7 @@
 <ol>
     @foreach ($jiris as $jiri)
-        <li><a class="underline text-blue-500"
-               href="{{ route('jiris.show',$jiri) }}">{{ $jiri->name }}</a></li>
+        <li>
+            <x-link :route="route('jiris.show',$jiri)">{{ $jiri->name }}</x-link>
+        </li>
     @endforeach
 </ol>

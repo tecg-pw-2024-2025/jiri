@@ -7,7 +7,6 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class ModelFromUser implements ValidationRule
 {
-
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $user_relationships = [
@@ -18,7 +17,7 @@ class ModelFromUser implements ValidationRule
             'evaluators' => 'contacts',
         ];
 
-        if (!array_key_exists($attribute, $user_relationships)) {
+        if (! array_key_exists($attribute, $user_relationships)) {
             $fail('You don\'t own '.$attribute.'.');
         }
 
