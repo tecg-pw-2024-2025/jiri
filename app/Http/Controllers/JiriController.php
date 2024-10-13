@@ -14,8 +14,12 @@ class JiriController extends Controller
      */
     public function index()
     {
-        $pastJiris = Auth::user()?->pastJiris;
-        $upcomingJiris = Auth::user()?->upcomingJiris;
+        $pastJiris = Auth::user()?->pastJiris()
+            ->withCount('students', 'evaluators', 'projects')
+            ->get();
+        $upcomingJiris = Auth::user()?->upcomingJiris()
+            ->withCount('students', 'evaluators', 'projects')
+            ->get();
 
         return view('jiris.index', compact('pastJiris', 'upcomingJiris'));
     }
@@ -27,16 +31,20 @@ class JiriController extends Controller
     {
         $validated = $request->validated();
 
-        $jiri = Auth::user()?->jiris()->create($validated);
+        $jiri = Auth::user()?->jiris()
+            ->create($validated);
 
         if ($request->has('students')) {
-            $jiri->students()->attach($validated['students']);
+            $jiri->students()
+                ->attach($validated['students']);
         }
         if ($request->has('evaluators')) {
-            $jiri->evaluators()->attach($validated['evaluators']);
+            $jiri->evaluators()
+                ->attach($validated['evaluators']);
         }
         if ($request->has('projects')) {
-            $jiri->projects()->attach($validated['projects']);
+            $jiri->projects()
+                ->attach($validated['projects']);
         }
 
         return to_route('jiris.show', $jiri);
@@ -47,8 +55,10 @@ class JiriController extends Controller
      */
     public function create()
     {
-        $contacts = Auth::user()?->contacts()->orderBy('last_name')->get();
-        $projects = Auth::user()?->projects()->orderBy('name')->get();
+        $contacts = Auth::user()?->contacts()
+            ->orderBy('last_name')->get();
+        $projects = Auth::user()?->projects()
+            ->orderBy('name')->get();
 
         return view('jiris.create', compact('contacts', 'projects'));
     }
@@ -60,8 +70,8 @@ class JiriController extends Controller
     {
         $jiri
             ->load([
-                'students' => fn ($query) => $query->orderBy('last_name'),
-                'evaluators' => fn ($query) => $query->orderBy('last_name'),
+                'students' => fn($query) => $query->orderBy('last_name'),
+                'evaluators' => fn($query) => $query->orderBy('last_name'),
             ])
             ->loadCount('students', 'evaluators', 'contacts');
 
