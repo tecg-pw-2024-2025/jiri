@@ -40,17 +40,18 @@ class ContactController extends Controller
                 $i = Image::read($request->file('photo'));
                 $i->cover($size, $size);
                 $i->save(
-                    storage_path('app/public/contacts/'.$request->user()->id.'/'.pathinfo(
+                    storage_path(
+                        'app/public/contacts/'.$request->user()->id.'/'.pathinfo(
                             $validated['photo'],
                             PATHINFO_FILENAME
                         ).'_'.$name.'.'.pathinfo(
                             $validated['photo'],
                             PATHINFO_EXTENSION
-                        ))
+                        )
+                    )
                 );
             }
         }
-
 
 
         $contact = Auth::user()?->contacts()

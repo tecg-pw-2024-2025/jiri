@@ -9,6 +9,11 @@
             <dt class="font-bold first-letter:capitalize">{!! __('email of the contact') !!}</dt>
             <dd>{{ $contact->email }}</dd>
         </div>
+        <div>
+            <dt class="font-bold first-letter:capitalize">{!! __('photo of the contact') !!}</dt>
+            <dd><img src="{{asset( $contact->photo )}}"
+                     alt=""></dd>
+        </div>
     </dl>
     <div>
         <x-link :route="route('contacts.edit',$contact)">
