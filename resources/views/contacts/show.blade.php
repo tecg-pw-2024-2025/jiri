@@ -9,11 +9,26 @@
             <dt class="font-bold first-letter:capitalize">{!! __('email of the contact') !!}</dt>
             <dd>{{ $contact->email }}</dd>
         </div>
-        <div>
-            <dt class="font-bold first-letter:capitalize">{!! __('photo of the contact') !!}</dt>
-            <dd><img src="{{asset( $contact->photo )}}"
-                     alt=""></dd>
-        </div>
+        @if(!is_null($contact->photo))
+            <div>
+                <dt class="font-bold first-letter:capitalize">{!! __('photo of the contact') !!}</dt>
+                <dd>
+                    @php
+                        $sizes = Config::get('photos.sizes');
+                        $search = array_keys($sizes)[0];
+                    @endphp
+
+                    <img src="{{ asset(str_replace($search, 'cover', $contact->photo)) }}"
+                         srcset="{{ asset(str_replace($search, 'cover', $contact->photo)) }} {{ $sizes['cover']}}w,
+                         {{ asset(str_replace($search, 'large', $contact->photo)) }} {{ $sizes['large'] }}w"
+                         alt="{{ $contact->fullname }}"
+                         loading="lazy"
+                         decoding="async"
+                         width="{{ $sizes['cover'] }}"
+                         height="{{ $sizes['cover'] }}"
+                    >
+            </div>
+        @endif
     </dl>
     <div>
         <x-link :route="route('contacts.edit',$contact)">
