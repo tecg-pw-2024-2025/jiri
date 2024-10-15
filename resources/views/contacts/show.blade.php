@@ -17,10 +17,9 @@
                         $sizes = Config::get('photos.sizes');
                         $search = array_keys($sizes)[0];
                     @endphp
-
-                    <img src="{{ asset(str_replace($search, 'cover', $contact->photo)) }}"
-                         srcset="{{ asset(str_replace($search, 'cover', $contact->photo)) }} {{ $sizes['cover']}}w,
-                         {{ asset(str_replace($search, 'large', $contact->photo)) }} {{ $sizes['large'] }}w"
+                    <img src="{{ Storage::url(str_replace($search, 'cover', $contact->photo)) }}"
+                         srcset="{{ Storage::url(str_replace($search, 'cover', $contact->photo)) }} {{  $sizes['cover']}}w,
+                         {{ Storage::url(str_replace($search, 'large', $contact->photo)) }} {{ $sizes['large'] }}w"
                          alt="{{ $contact->fullname }}"
                          loading="lazy"
                          decoding="async"

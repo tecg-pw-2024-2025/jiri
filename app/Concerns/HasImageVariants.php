@@ -2,13 +2,12 @@
 
 namespace App\Concerns;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 
 trait HasImageVariants
 {
-    public function makeImageVariants(UploadedFile $requestImage, string $originalPath): void
+    public function makeImageVariants(string $originalPath): void
     {
         $sizes = config('photos.sizes');
         $search = array_keys($sizes)[0];
@@ -17,17 +16,18 @@ trait HasImageVariants
             if ($width === null) {
                 continue;
             }
-
+            $image = Image::read(Storage::get($originalPath));
             if ($size === 'cover') {
-                $imageResized = Image::read($requestImage)
+                $imageResized = $image
                     ->coverDown(width: $width, height: $width);
             } else {
-                $imageResized = Image::read($requestImage)
+                $imageResized = $image
                     ->scaleDown(width: $width);
             }
 
             $filePath = str_replace($search, $size, $originalPath);
             $directoryPath = dirname($filePath);
+
             if (! Storage::exists($directoryPath)) {
                 Storage::makeDirectory($directoryPath);
             }
