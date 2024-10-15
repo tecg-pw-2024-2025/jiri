@@ -77,7 +77,7 @@ test('an uploaded photo is resized to several variants', function () {
     $contact = Contact::latest('id')->first();
 
     foreach (Config::get('photos.sizes') as $name => $size) {
-        if (!is_int($size)) {
+        if (! is_int($size)) {
             continue;
         }
         expect(
