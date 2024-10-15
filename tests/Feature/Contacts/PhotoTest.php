@@ -4,7 +4,8 @@ use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 
-use function Pest\Laravel\{actingAs, post};
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\post;
 
 beforeEach(function () {
     Storage::fake('public');
@@ -46,7 +47,7 @@ test('a contact photo can be stored on the disk', function () {
         route('contacts.store'),
         [
             ...$contact,
-            'photo' => UploadedFile::fake()->image('photo.jpg')
+            'photo' => UploadedFile::fake()->image('photo.jpg'),
         ]
     );
     $response->assertSessionHasNoErrors();
@@ -69,14 +70,14 @@ test('an uploaded photo is resized to several variants', function () {
         route('contacts.store'),
         [
             ...$contact,
-            'photo' => UploadedFile::fake()->image('photo.jpg')
+            'photo' => UploadedFile::fake()->image('photo.jpg'),
         ]
     );
 
     $contact = Contact::latest('id')->first();
 
     foreach (Config::get('photos.sizes') as $name => $size) {
-        if (!is_int($size)) {
+        if (! is_int($size)) {
             continue;
         }
         expect(

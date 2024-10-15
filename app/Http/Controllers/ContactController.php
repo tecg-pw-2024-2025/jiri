@@ -9,7 +9,6 @@ use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
-
 class ContactController extends Controller
 {
     use HasImageVariants;

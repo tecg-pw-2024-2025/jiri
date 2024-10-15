@@ -70,8 +70,8 @@ class JiriController extends Controller
     {
         $jiri
             ->load([
-                'students' => fn($query) => $query->orderBy('last_name'),
-                'evaluators' => fn($query) => $query->orderBy('last_name'),
+                'students' => fn ($query) => $query->orderBy('last_name'),
+                'evaluators' => fn ($query) => $query->orderBy('last_name'),
             ])
             ->loadCount('students', 'evaluators', 'contacts');
 

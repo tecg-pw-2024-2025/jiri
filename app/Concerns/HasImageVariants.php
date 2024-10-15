@@ -28,7 +28,7 @@ trait HasImageVariants
 
             $filePath = str_replace($search, $size, $originalPath);
             $directoryPath = dirname($filePath);
-            if (!Storage::exists($directoryPath)) {
+            if (! Storage::exists($directoryPath)) {
                 Storage::makeDirectory($directoryPath);
             }
 
