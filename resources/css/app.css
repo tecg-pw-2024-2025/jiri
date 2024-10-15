@@ -18,3 +18,28 @@
         src: url("../fonts/Inter-4.0/web/InterVariable-Italic.woff2") format("woff2");
     }
 }
+
+@layer utilities {
+    .grid-layout-template {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "skip   "
+        "content"
+        "footer ";
+        grid-template-rows: 0 1fr 3.5rem;
+        min-height: calc(100vh);
+    }
+
+    .skip {
+        grid-area: skip;
+    }
+
+    .content {
+        grid-area: content;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+}

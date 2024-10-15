@@ -32,6 +32,9 @@
                                 type="checkbox"
                                 label-text="remember me for 15 days"
             />
+
+
+
             <div>
                 <x-form-submission-button class="bg-blue-700"
                                           icon="login">{!! __('login') !!}</x-form-submission-button>
