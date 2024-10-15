@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
         User::factory(2)
             ->has(
                 Jiri::factory()
-                    ->count(2)
+                    ->count(5)
                     ->hasAttached(
                         Contact::factory()
-                            ->count(3)
+                            ->count(5)
                             ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
                         fn () => [
                             'role' => random_int(0, 1) ?
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                     )
                     ->hasAttached(
                         Project::factory()
-                            ->count(2)
+                            ->count(5)
                             ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id])
                     )
             )
@@ -43,10 +43,10 @@ class DatabaseSeeder extends Seeder
         User::factory()
             ->has(
                 Jiri::factory()
-                    ->count(2)
+                    ->count(5)
                     ->hasAttached(
                         Contact::factory()
-                            ->count(3)
+                            ->count(5)
                             ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
                         fn () => [
                             'role' => random_int(0, 1) ?
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
                     )
                     ->hasAttached(
                         Project::factory()
-                            ->count(2)
+                            ->count(5)
                             ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id])
                     )
             )
