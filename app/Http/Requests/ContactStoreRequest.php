@@ -26,6 +26,7 @@ class ContactStoreRequest extends FormRequest
             'first_name' => 'required|string|between:3,255',
             'last_name' => 'required|string|between:3,255',
             'email' => 'required|email|unique:contacts,email',
+            'photo' => 'nullable|image',
         ];
     }
 }
