@@ -16,9 +16,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/jiris.php';
-require __DIR__.'/contacts.php';
-require __DIR__.'/projects.php';
-require __DIR__.'/attendances.php';
-require __DIR__.'/assignments.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/jiris.php';
+require __DIR__ . '/contacts.php';
+require __DIR__ . '/projects.php';
+require __DIR__ . '/attendances.php';
+require __DIR__ . '/assignments.php';
+require __DIR__ . '/live-jiri.php';

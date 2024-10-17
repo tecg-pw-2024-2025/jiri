@@ -26,11 +26,22 @@ class DatabaseSeeder extends Seeder
                         Contact::factory()
                             ->count(5)
                             ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
-                        fn () => [
-                            'role' => random_int(0, 1) ?
+                        function () {
+                            $role = random_int(0, 1) ?
                                 ContactRoles::Evaluator->value :
-                                ContactRoles::Student->value,
-                        ]
+                                ContactRoles::Student->value;
+                            if ($role === ContactRoles::Evaluator->value) {
+                                return [
+                                    'role' => $role,
+                                    'token' => bin2hex(random_bytes(32)),
+                                ];
+                            }
+
+                            return [
+                                'role' => $role,
+                            ];
+
+                        }
                     )
                     ->hasAttached(
                         Project::factory()
@@ -48,11 +59,22 @@ class DatabaseSeeder extends Seeder
                         Contact::factory()
                             ->count(5)
                             ->state(fn (array $attributes, Jiri $jiri) => ['user_id' => $jiri->user_id]),
-                        fn () => [
-                            'role' => random_int(0, 1) ?
+                        function () {
+                            $role = random_int(0, 1) ?
                                 ContactRoles::Evaluator->value :
-                                ContactRoles::Student->value,
-                        ]
+                                ContactRoles::Student->value;
+                            if ($role === ContactRoles::Evaluator->value) {
+                                return [
+                                    'role' => $role,
+                                    'token' => bin2hex(random_bytes(32)),
+                                ];
+                            }
+
+                            return [
+                                'role' => $role,
+                            ];
+
+                        }
                     )
                     ->hasAttached(
                         Project::factory()

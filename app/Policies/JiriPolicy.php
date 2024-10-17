@@ -8,19 +8,12 @@ use App\Models\User;
 class JiriPolicy
 {
     /**
-     * Determine whether the user can view any models.
-     */
-    /*    public function viewAny(User $user): Response
-        {
-
-        }*/
-
-    /**
      * Determine whether the user can view the model.
      */
     public function view(User $user, Jiri $jiri): bool
     {
         return $user->id === $jiri->user_id;
+
     }
 
     /**

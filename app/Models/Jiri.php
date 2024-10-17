@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ContactRoles;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,7 +52,8 @@ class Jiri extends Model
         return $this
             ->contacts()
             ->withPivot('id')
-            ->withPivotValue('role', ContactRoles::Evaluator->value)
+            ->withPivot('token')
+            ->WithPivotValue('role', ContactRoles::Evaluator->value)
             ->withTimestamps();
     }
 
@@ -73,5 +75,21 @@ class Jiri extends Model
     {
         return $this
             ->hasMany(Assignment::class);
+    }
+
+    protected function isPast(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, array $attributes) => $attributes['starting_at'] <= now(),
+            set: fn ($value) => $value,
+        );
+    }
+
+    protected function isComing(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, array $attributes) => $attributes['starting_at'] > now(),
+            set: fn ($value) => $value,
+        );
     }
 }
