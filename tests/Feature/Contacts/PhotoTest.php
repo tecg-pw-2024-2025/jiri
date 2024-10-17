@@ -55,7 +55,7 @@ test('a contact photo can be stored on the disk', function () {
     $contact = Contact::latest('id')->first();
 
     expect(
-        Storage::disk('public')
+        Storage::disk('images')
             ->exists($contact->photo)
     )->toBeTrue();
 });
@@ -81,7 +81,7 @@ test('an uploaded photo is resized to several variants', function () {
             continue;
         }
         expect(
-            Storage::disk('public')
+            Storage::disk('images')
                 ->exists(str_replace('original', $name, $contact->photo))
         )->toBeTrue();
     }

@@ -16,7 +16,11 @@ class ContactFactory extends Factory
     private function getPhotoPath(): string
     {
         if (! isset(self::$originals)) {
-            self::$originals = Storage::disk('public')->files('contacts/seed/original');
+            if (! Storage::exists('contacts/seed/original')) {
+                Storage::makeDirectory('contacts/seed/original');
+            }
+
+            self::$originals = Storage::files('contacts/seed/original');
         }
 
         return self::$originals[array_rand(self::$originals)];

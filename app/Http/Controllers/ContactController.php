@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Concerns\HasImageVariants;
+use App\Events\ContactPhotoStored;
 use App\Http\Requests\ContactStoreRequest;
 use App\Http\Requests\ContactUpdateRequest;
 use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ContactController extends Controller
 {
-    use HasImageVariants;
-
     /**
      * Display a listing of the resource.
      */
@@ -31,8 +30,11 @@ class ContactController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')?->store('contacts/'.$request->user()->id.'/original');
-            $this->makeImageVariants(requestImage: $request->file('photo'), originalPath: $validated['photo']);
+            $validated['photo'] = Storage::putFile('contacts/'.$request->user()->id.'/original',
+                $request->file('photo'));
+
+            ContactPhotoStored::dispatch($validated);
+            info('Contact photo stored', $validated);
         }
 
         $contact = Auth::user()?->contacts()
