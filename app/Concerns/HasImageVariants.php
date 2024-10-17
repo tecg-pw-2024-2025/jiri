@@ -19,10 +19,10 @@ trait HasImageVariants
             $image = Image::read(Storage::get($originalPath));
             if ($size === 'cover') {
                 $imageResized = $image
-                    ->coverDown(width: $width, height: $width);
+                    ->cover(width: $width, height: $width);
             } else {
                 $imageResized = $image
-                    ->scaleDown(width: $width);
+                    ->scale(width: $width);
             }
 
             $filePath = str_replace($search, $size, $originalPath);

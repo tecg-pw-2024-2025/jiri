@@ -11,21 +11,29 @@
         </div>
         @if(!is_null($contact->photo))
             <div>
-                <dt class="font-bold first-letter:capitalize">{!! __('photo of the contact') !!}</dt>
-                <dd>
-                    @php
-                        $sizes = Config::get('photos.sizes');
-                        $search = array_keys($sizes)[0];
-                    @endphp
-                    <img src="{{ Storage::url(str_replace($search, 'cover', $contact->photo)) }}"
-                         srcset="{{ Storage::url(str_replace($search, 'cover', $contact->photo)) }} {{  $sizes['cover']}}w,
+                @php
+                    $sizes = Config::get('photos.sizes');
+                    $search = array_keys($sizes)[0];
+                @endphp
+                @if(Storage::exists(str_replace($search, 'cover', $contact->photo)))
+                    <dt class="font-bold first-letter:capitalize">{!! __('photo of the contact') !!}</dt>
+                    <dd>
+                        <img src="{{ Storage::url(str_replace($search, 'cover', $contact->photo)) }}"
+                             srcset="{{ Storage::url(str_replace($search, 'cover', $contact->photo)) }} {{  $sizes['cover']}}w,
                          {{ Storage::url(str_replace($search, 'large', $contact->photo)) }} {{ $sizes['large'] }}w"
-                         alt="{{ $contact->fullname }}"
-                         loading="lazy"
-                         decoding="async"
-                         width="{{ $sizes['cover'] }}"
-                         height="{{ $sizes['cover'] }}"
-                    >
+                             alt="{{ $contact->fullname }}"
+                             loading="lazy"
+                             decoding="async"
+                             width="{{ $sizes['cover'] }}"
+                             height="{{ $sizes['cover'] }}"
+                        >
+                    </dd>
+                @else
+                    <dt class="font-bold first-letter:capitalize">{!! __('photo of the contact') !!}</dt>
+                    <dd>
+                        <p>{!! __('the picture is resizing, please refresh in a moment') !!}</p>
+                    </dd>
+                @endif
             </div>
         @endif
     </dl>

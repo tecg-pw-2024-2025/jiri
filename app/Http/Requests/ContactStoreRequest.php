@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class ContactStoreRequest extends FormRequest
 {
@@ -26,7 +28,11 @@ class ContactStoreRequest extends FormRequest
             'first_name' => 'required|string|between:3,255',
             'last_name' => 'required|string|between:3,255',
             'email' => 'required|email|unique:contacts,email',
-            'photo' => 'nullable|image',
+            'photo' => ['nullable',
+                File::image()
+                    ->max('2mb')
+                    ->dimensions(Rule::dimensions()->maxWidth(2000)->maxHeight(2000)),
+            ],
         ];
     }
 }

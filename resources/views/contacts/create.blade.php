@@ -11,25 +11,26 @@
                             help-text="min 3 chars, max 255"
                             placeholder="jon"
                             autofocus
-                            :value="old('first_name')" />
+                            :value="old('first_name')"/>
         <x-input-with-label id="last_name"
                             name="last_name"
                             label-text="last name"
                             help-text="min 3 chars, max 255"
                             placeholder="doe"
-                            :value="old('last_name')" />
+                            :value="old('last_name')"/>
         <x-input-with-label id="email"
                             name="email"
                             label-text="email of the contact"
                             placeholder="jon@doe.com"
                             required
-                            :value="old('email')" />
+                            :value="old('email')"/>
         <x-input-with-label id="photo"
                             name="photo"
                             label-text="photo of the contact"
+                            help-text="images of max 2Mb and max 2000X2000 pixels"
                             type="file"
                             accept="image/*"
-                            :value="old('photo')" />
+                            :value="old('photo')"/>
         <div>
             <x-form-submission-button class="bg-blue-700">
                 {!! __('create this contact') !!}
