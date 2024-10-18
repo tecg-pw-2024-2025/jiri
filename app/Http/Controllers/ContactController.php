@@ -34,7 +34,6 @@ class ContactController extends Controller
                 $request->file('photo'));
 
             ContactPhotoStored::dispatch($validated);
-            info('Contact photo stored', $validated);
         }
 
         $contact = Auth::user()?->contacts()

@@ -17,9 +17,7 @@ class ContactPhotoStored
      */
     public function __construct(
         public array $validated
-    ) {
-        //
-    }
+    ) {}
 
     /**
      * Get the channels the event should broadcast on.

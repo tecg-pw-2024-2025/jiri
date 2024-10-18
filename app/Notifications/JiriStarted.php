@@ -35,7 +35,7 @@ class JiriStarted extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $attendance = Attendance::find($this->attendance_id);
-        info($this->attendance_id);
+        
         $action = route('live-jiri.show', [
             'jiri' => $attendance->jiri_id,
             'token' => $attendance->token,
