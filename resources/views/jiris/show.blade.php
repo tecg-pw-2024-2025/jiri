@@ -9,6 +9,11 @@
             </div>
             <div>
                 <dt class="font-bold first-letter:capitalize">{!! __('date and time of the jiri') !!}</dt>
+                @if($jiri->is_past)
+                    <dd class="first-letter:capitalize text-red-700">{!! __('this jiri is past') !!}</dd>
+                @else
+                    <dd class="first-letter:capitalize text-green-700">{!! __('this jiri is upcoming') !!}</dd>
+                @endif
                 <dd class="first-letter:capitalize">{{ $jiri->starting_at->diffForHumans() }}</dd>
                 <dd>
                     <time datetime="{{ $jiri->starting_at }}"
@@ -17,19 +22,30 @@
                 </dd>
             </div>
         </dl>
-        <div>
-            <a href="{{ route('jiris.edit',$jiri) }}"
-               class="underline text-blue-700 inline-block first-letter:capitalize">{!! __('update this jiri') !!}</a>
-        </div>
-        <form action="{{ route('jiris.destroy',$jiri) }}"
-              method="post">
-            @csrf
-            @method('DELETE')
-            <x-form-submission-button class="bg-red-700"
-                                      icon="remove">
-                {!! __('delete this jiri') !!}
-            </x-form-submission-button>
-        </form>
+        <section class="flex gap-2 items-center">
+            <h2 class="sr-only">{!! __('actions on the jiri') !!}</h2>
+            <div>
+                <a href="{{ route('jiris.edit',$jiri) }}"
+                   class="underline text-blue-700 inline-block first-letter:capitalize">{!! __('update this jiri') !!}</a>
+            </div>
+            <form action="{{ route('jiris.destroy',$jiri) }}"
+                  method="post">
+                @csrf
+                @method('DELETE')
+                <x-form-submission-button class="bg-red-700"
+                                          icon="remove">
+                    {!! __('delete this jiri') !!}
+                </x-form-submission-button>
+            </form>
+            <form action="{{ route('live-jiri.store') }}" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{ $jiri->id }}">
+                <x-form-submission-button class="bg-green-700"
+                                          icon="start">
+                    {!! __('start jiri') !!}
+                </x-form-submission-button>
+            </form>
+        </section>
     </div>
     <div class="flex flex-col gap-8">
         <!-- *************** -->
