@@ -5,7 +5,7 @@
         @if($jiri->is_past)
             <p class="first-letter:capitalize text-red-700 font-bold">{!! __('this jiri is past') !!}</p>
         @else
-            <p class="first-letter:capitalize text-green-700">{!! __('this jiri is upcoming') !!}</p>
+            <p class="first-letter:capitalize text-green-700 font-bold">{!! __('this jiri is upcoming') !!}</p>
         @endif
         <dl class="flex flex-col gap-4 bg-slate-50 p-4">
             <div>

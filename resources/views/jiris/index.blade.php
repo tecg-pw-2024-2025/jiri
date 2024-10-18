@@ -1,13 +1,18 @@
 <x-app-layout>
     <h1 class="text-xl text-blue-900 font-bold first-letter:capitalize text-blue-900">{!! __('my jiris') !!}</h1>
-    @if($pastJiris)
-        <h2 class="font-bold first-letter:capitalize">{!! __('past jiris') !!}</h2>
-        <x-jiris.list :jiris="$pastJiris" />
-    @endif
 
     @if($upcomingJiris)
-        <h2 class="font-bold first-letter:capitalize">{!! __('upcoming jiris') !!}</h2>
-        <x-jiris.list :jiris="$upcomingJiris" />
+        <section>
+            <h2 class="font-bold first-letter:capitalize">{!! __('upcoming jiris') !!}</h2>
+            <x-jiris.list :jiris="$upcomingJiris"/>
+        </section>
+    @endif
+
+    @if($pastJiris)
+        <section>
+            <h2 class="font-bold first-letter:capitalize">{!! __('past jiris') !!}</h2>
+            <x-jiris.list :jiris="$pastJiris"/>
+        </section>
     @endif
 
     <div class="flex justify-end">
