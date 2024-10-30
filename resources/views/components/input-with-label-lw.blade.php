@@ -2,8 +2,7 @@
     'type'=>'text',
     'required'=>false,
     'name',
-    'id',
-    'label-text',
+    'id','label-text',
     'value'=>'',
     'placeholder',
     'autofocus'=>false,
@@ -29,9 +28,6 @@
                   autocapitalize="none"
                   autocorrect="off"
                   spellcheck="false"
-                  @if($model)
-                      wire:model.live="{{$model}}"
-                  @endif
                   @if($autofocus)
                       autofocus
                   @endif
@@ -39,18 +35,13 @@
                       required
                   @endif
                   class="border border-gray-300 focus:invalid:border-red-500 invalid:text-red-600 rounded-md p-2 placeholder-gray-300"
-        >@if(!$model)
-                {{ $value }}
-            @endif</textarea>
+        >{{ $value }}</textarea>
     @else
         <input id="{{ $id }}"
                type="{{ $type }}"
                name="{{ $name }}"
                @if(isset($value))
                    value="{{ $value }}"
-               @endif
-               @if($model)
-                   wire:model.live="{{$model}}"
                @endif
                @if(isset($placeholder))
                    placeholder="{!! __($placeholder) !!}"
