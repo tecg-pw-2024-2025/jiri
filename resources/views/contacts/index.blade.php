@@ -1,16 +1,11 @@
 <x-app-layout>
-    <h1 class="text-xl text-blue-900 font-bold first-letter:capitalize">{!! __('my contacts') !!}</h1>
+    <x-index-title-with-add-link :route="route('contacts.create')">
+        <x-slot:title>{!! __('my contacts') !!}</x-slot:title>
+        <x-slot:link>{!! __('create a new contact') !!}</x-slot:link>
+    </x-index-title-with-add-link>
     @if($contacts)
-        <x-contacts.list :contacts="$contacts" />
+        <x-contacts.list :contacts="$contacts"/>
     @else
         <p>{!! __('there is no contact yet') !!}</p>
     @endif
-
-    <div class="flex justify-end">
-        <x-link :route="route('contacts.create')"
-                icon="add"
-                icon-position="before">
-            <span>{{ __('create a new contact') }}</span>
-        </x-link>
-    </div>
 </x-app-layout>

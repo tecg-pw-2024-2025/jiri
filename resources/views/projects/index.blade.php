@@ -1,14 +1,9 @@
 <x-app-layout>
-    <h1 class="text-xl text-blue-900 font-bold first-letter:capitalize">{!! __('my projects') !!}</h1>
+    <x-index-title-with-add-link :route="route('projects.create')">
+        <x-slot:title>{!! __('my projects') !!}</x-slot:title>
+        <x-slot:link>{!! __('create a new project') !!}</x-slot:link>
+    </x-index-title-with-add-link>
     @if($projects)
-        <x-projects.list :projects="$projects" />
+        <x-projects.list :projects="$projects"/>
     @endif
-
-    <div class="flex justify-end">
-        <x-link :route="route('projects.create')"
-                icon="add"
-                icon-position="before">
-            <span>{{ __('create a new project') }}</span>
-        </x-link>
-    </div>
 </x-app-layout>
