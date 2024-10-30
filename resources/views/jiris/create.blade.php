@@ -2,7 +2,7 @@
     <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('create a new jiri') !!}</h1>
     <form action="{{ route('jiris.store') }}"
           method="post"
-          class="flex flex-col gap-8 bg-slate-50 p-4">
+          class="flex flex-col gap-8 bg-stone-100 p-4 border border-stone-200 rounded shadow">
         @csrf
         <fieldset class="flex flex-col gap-4">
             <legend class="font-bold uppercase mb-2 tracking-wider">{{ __('your jiri') }}</legend>
@@ -26,6 +26,7 @@
                                 placeholder="{{ $now }}"
             />
         </fieldset>
+        
         @if($contacts->count()>0)
             <section>
                 <fieldset>
@@ -33,7 +34,8 @@
                         <h2 class=" font-bold uppercase tracking-wider">{!! __('participants') !!}</h2>
                         <span class="block">{!! __('sorted by family name') !!}</span>
                         @if($errors->has('evaluators') || $errors->has('students'))
-                            <span class="text-red-500 block">{!! $errors->first('students') ?: $errors->first('evaluators') !!}</span>
+                            <span
+                                class="text-red-500 block">{!! $errors->first('students') ?: $errors->first('evaluators') !!}</span>
                         @endif
                     </legend>
                     <div class="flex gap-8">

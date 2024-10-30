@@ -3,14 +3,14 @@
         <h1 class="font-bold text-xl text-blue-900 mb-4 first-letter:capitalize">{!! __('jiri, the app for managing your jiris') !!}</h1>
         <p class="first-letter:capitalize">{!! __('intro to jiri') !!}</p>
     </div>
-    <section class="bg-slate-50 drop-shadow-[0px_0px_1px_rgba(0,0,0,0.15)] rounded-md p-4 flex flex-col gap-8">
+    <section class="bg-stone-100 shadow border border-stone-200 rounded-md p-4 flex flex-col gap-8">
         <div>
             <h2 class="uppercase font-bold mb-4">
                 {!! __('join jiri') !!}
             </h2>
             <p>En vous créant un compte, vous pourrez tirer parti de toutes les fonctionnalités de Jiri. Vous
-               pourrez créer de nouveaux jurys, ajouter des contacts et des projets et monitorer vos jurys en temps
-               réel.</p>
+                pourrez créer de nouveaux jurys, ajouter des contacts et des projets et monitorer vos jurys en temps
+                réel.</p>
         </div>
         <form action="{!! route('register') !!}"
               method="post"

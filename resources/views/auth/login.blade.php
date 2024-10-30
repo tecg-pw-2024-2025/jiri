@@ -3,7 +3,8 @@
         <h1 class="font-bold text-xl text-blue-900 mb-4 first-letter:capitalize">{!! __('jiri, the app for managing your jiris') !!}</h1>
         <p class="first-letter:capitalize">{!! __('intro to jiri') !!}</p>
     </div>
-    <section class="bg-slate-50 drop-shadow-[0px_0px_1px_rgba(0,0,0,0.15)] rounded-md p-4 flex flex-col gap-8">
+    <section
+        class="bg-stone-100 shadow rounded-md p-4 flex flex-col gap-8 border border-stone-200">
         <div>
             <h2 class="uppercase font-bold mb-4">
                 {!! __('identify yourself!') !!}
@@ -32,7 +33,6 @@
                                 type="checkbox"
                                 label-text="remember me for 15 days"
             />
-
 
 
             <div>
