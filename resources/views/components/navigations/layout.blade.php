@@ -1,4 +1,4 @@
-<header {{$attributes->class(['border-b border-b-blue-100 p-4 w-full'])}}>
+<header {{$attributes->class(['bg-stone-100 border-b border-b-stone-200 shadow-sm p-4 w-full'])}}>
     <nav id="main-menu"
          class="font-medium flex text-blue-900 items-center">
         <h2 class="sr-only">{!! __('main menu') !!}</h2>
