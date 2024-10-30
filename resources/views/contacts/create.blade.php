@@ -1,9 +1,9 @@
 <x-app-layout>
     <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('create a new contact') !!}</h1>
-    <form action="{{ route('contacts.store') }}"
-          method="post"
-          enctype="multipart/form-data"
-          class="flex flex-col gap-8 bg-slate-50 p-4">
+    <x-jiri-form action="{{ route('contacts.store') }}"
+                 method="post"
+                 enctype="multipart/form-data"
+                 class="flex flex-col gap-8 bg-slate-50 p-4">
         @csrf
         <x-input-with-label id="first_name"
                             name="first_name"
@@ -36,5 +36,5 @@
                 {!! __('create this contact') !!}
             </x-form-submission-button>
         </div>
-    </form>
+    </x-jiri-form>
 </x-app-layout>

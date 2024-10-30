@@ -1,8 +1,8 @@
 <x-app-layout>
     <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('create a new project') !!}</h1>
-    <form action="{{ route('projects.store') }}"
-          method="post"
-          class="flex flex-col gap-8 bg-slate-50 p-4">
+    <x-jiri-form action="{{ route('projects.store') }}"
+                 method="post"
+                 class="flex flex-col gap-8 bg-slate-50 p-4">
         @csrf
         <x-input-with-label id="name"
                             name="name"
@@ -27,5 +27,5 @@
                 {!! __('create this project') !!}
             </x-form-submission-button>
         </div>
-    </form>
+    </x-jiri-form>
 </x-app-layout>

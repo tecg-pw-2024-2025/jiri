@@ -1,8 +1,8 @@
 <x-app-layout>
-    <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('create a new jiri')  !!}</h1>
-    <form action="{{ route('jiris.update',$jiri) }}"
-          method="post"
-          class="flex flex-col gap-8 bg-slate-50 p-4">
+    <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('update this jiri')  !!}</h1>
+    <x-jiri-form action="{{ route('jiris.update',$jiri) }}"
+                 method="post"
+                 class="flex flex-col gap-8 bg-slate-50 p-4">
 
         @csrf
         @method('PATCH')
@@ -36,5 +36,5 @@
                 {!! __('update this jiri') !!}
             </x-form-submission-button>
         </div>
-    </form>
+    </x-jiri-form>
 </x-app-layout>

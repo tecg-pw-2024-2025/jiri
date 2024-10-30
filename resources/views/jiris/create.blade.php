@@ -1,8 +1,7 @@
 <x-app-layout>
     <h1 class="font-bold text-xl text-blue-900 first-letter:capitalize">{!! __('create a new jiri') !!}</h1>
-    <form action="{{ route('jiris.store') }}"
-          method="post"
-          class="flex flex-col gap-8 bg-stone-100 p-4 border border-stone-200 rounded shadow">
+    <x-jiri-form action="{{ route('jiris.store') }}"
+                 method="post">
         @csrf
         <fieldset class="flex flex-col gap-4">
             <legend class="font-bold uppercase mb-2 tracking-wider">{{ __('your jiri') }}</legend>
@@ -26,7 +25,7 @@
                                 placeholder="{{ $now }}"
             />
         </fieldset>
-        
+
         @if($contacts->count()>0)
             <section>
                 <fieldset>
@@ -114,5 +113,5 @@
                 {!! __('create this jiri') !!}
             </x-form-submission-button>
         </div>
-    </form>
+    </x-jiri-form>
 </x-app-layout>
