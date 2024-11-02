@@ -4,10 +4,12 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class ContactsList extends Component
 {
+    #[Url]
     public $filter = '';
 
     #[Computed]
